@@ -1,0 +1,132 @@
+.engineering-focus {
+  padding: 80px 2rem;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+}
+
+.engineering-focus .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.engineering-focus .section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.engineering-focus .section-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--text);
+  margin: 0 0 1rem;
+}
+
+.engineering-focus .section-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin: 0;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.focus-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.focus-card {
+  flex: 0 1 calc(33.333% - 2rem);
+  padding: 2.5rem 2rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  text-align: center;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* 2-column layout for medium screens */
+@media (max-width: 1024px) {
+  .focus-card {
+    flex: 0 1 calc(50% - 2rem);
+  }
+}
+
+/* 1-column layout for mobile is handled by existing media query, need to override flex width */
+@media (max-width: 768px) {
+  .focus-card {
+    flex: 0 1 100%;
+  }
+}
+
+.focus-card:hover {
+  border-color: var(--primary);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(99, 102, 241, 0.15);
+}
+
+.focus-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+  border-radius: 12px;
+  color: var(--primary);
+  margin: 0 auto 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.focus-card:hover .focus-icon {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
+  transform: scale(1.1);
+}
+
+.focus-card h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 0.75rem;
+}
+
+.focus-card p {
+  font-size: 0.98rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Dark Mode */
+.dark .engineering-focus {
+  --bg-card: #1a1a1a;
+  --border-color: #333333;
+}
+
+.light .engineering-focus {
+  --bg-card: #f9f9f9;
+  --border-color: #e0e0e0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .engineering-focus {
+    padding: 60px 1.5rem;
+  }
+
+  .engineering-focus .section-title {
+    font-size: 1.8rem;
+  }
+
+  .focus-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}

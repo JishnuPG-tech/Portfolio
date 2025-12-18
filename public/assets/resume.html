@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JISHNU P G - Resume</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f4f4f4;
+            padding: 20px;
+        }
+        
+        .resume-container {
+            max-width: 850px;
+            background: white;
+            margin: 0 auto;
+            padding: 40px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            line-height: 1.4;
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #6366f1;
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .name {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+        }
+        
+        .title {
+            font-size: 14px;
+            color: #6366f1;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .contact {
+            font-size: 12px;
+            color: #666;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+        }
+        
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            border-bottom: 2px solid #6366f1;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .entry {
+            margin-bottom: 15px;
+        }
+        
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 3px;
+        }
+        
+        .entry-title {
+            font-weight: 700;
+            color: #1a1a1a;
+            font-size: 13px;
+        }
+        
+        .entry-subtitle {
+            color: #666;
+            font-style: italic;
+            font-size: 12px;
+        }
+        
+        .entry-date {
+            font-size: 11px;
+            color: #999;
+        }
+        
+        .entry-description {
+            font-size: 12px;
+            color: #555;
+            margin-top: 5px;
+            line-height: 1.4;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            font-size: 12px;
+            color: #555;
+        }
+        
+        .skill-category {
+            margin-bottom: 10px;
+        }
+        
+        .skill-category strong {
+            color: #6366f1;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 3px;
+        }
+        
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+        
+        .skill-tag {
+            background: #f0f0f0;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 11px;
+            color: #555;
+        }
+        
+        ul {
+            margin-left: 20px;
+            font-size: 12px;
+            color: #555;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .resume-container {
+                box-shadow: none;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="resume-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="name">JISHNU P G</div>
+            <div class="title">Full Stack Developer | ML Enthusiast</div>
+            <div class="contact">
+                <span>📍 Palakkad, Kerala</span>
+                <span>📧 jishnupg2005@gmail.com</span>
+                <span>📱 +91 8590731979</span>
+                <span>🔗 github.com/jishnupg</span>
+            </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="section">
+            <div class="section-title">Professional Summary</div>
+            <p style="font-size: 12px; color: #555; line-height: 1.5;">Final Year BCA student building full-stack and AI-powered applications. Passionate about solving real-world problems through intelligent systems. Experienced with modern web technologies and machine learning pipelines.</p>
+        </div>
+
+        <!-- Education -->
+        <div class="section">
+            <div class="section-title">Education</div>
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="entry-title">Bachelor of Computer Applications (BCA)</span>
+                    <span class="entry-date">Expected: March 2026</span>
+                </div>
+                <div class="entry-subtitle">YIMS Palakkad, Kerala</div>
+                <div class="entry-description">CGPA: 3.8/4.0 | Coursework: DSA, DBMS, OS, OOP, Web Development, Machine Learning</div>
+            </div>
+            
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="entry-title">Plus Two (Computer Science)</span>
+                    <span class="entry-date">March 2023</span>
+                </div>
+                <div class="entry-subtitle">GHSS Vellinezhi, Kerala</div>
+                <div class="entry-description">Percentage: 92% | Strong foundation in Computer Science fundamentals</div>
+            </div>
+        </div>
+
+        <!-- Featured Project -->
+        <div class="section">
+            <div class="section-title">Featured Project</div>
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="entry-title">SmartWatt AI - Energy Disaggregation System</span>
+                    <span class="entry-date">2024-2025</span>
+                </div>
+                <div class="entry-subtitle">Project Head | Full Stack Developer</div>
+                <ul>
+                    <li><strong>Problem:</strong> Households waste 15-20% of energy due to lack of appliance-level consumption visibility</li>
+                    <li><strong>Solution:</strong> Built hybrid ML system combining neural networks with physics-based NILM techniques</li>
+                    <li><strong>Results:</strong> 30% accuracy improvement | 92% appliance detection | 1000+ data points/sec processing | &lt;100ms latency</li>
+                    <li><strong>Tech Stack:</strong> Next.js, FastAPI, TensorFlow, PostgreSQL, Redis, Docker</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Skills -->
+        <div class="section">
+            <div class="section-title">Technical Skills</div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <strong>Frontend</strong>
+                    <div class="skill-tags">
+                        <span class="skill-tag">React 19</span>
+                        <span class="skill-tag">Next.js 16</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">Framer Motion</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <strong>Backend & ML</strong>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python 3.11</span>
+                        <span class="skill-tag">FastAPI</span>
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">Keras</span>
+                        <span class="skill-tag">Scikit-learn</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <strong>Database & Tools</strong>
+                    <div class="skill-tags">
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">Redis</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Linux</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <strong>Cloud & DevOps</strong>
+                    <div class="skill-tags">
+                        <span class="skill-tag">AWS EC2</span>
+                        <span class="skill-tag">GitHub Actions</span>
+                        <span class="skill-tag">Nginx</span>
+                        <span class="skill-tag">CI/CD</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Experience -->
+        <div class="section">
+            <div class="section-title">Key Competencies</div>
+            <ul>
+                <li>Full-stack web application development with modern frameworks</li>
+                <li>Machine learning pipeline design and implementation</li>
+                <li>RESTful API design and backend architecture</li>
+                <li>Real-time data processing and visualization</li>
+                <li>Cloud deployment and DevOps practices</li>
+                <li>Problem-solving and system design</li>
+            </ul>
+        </div>
+
+        <!-- Links -->
+        <div class="section" style="border-top: 1px solid #ddd; padding-top: 15px;">
+            <p style="font-size: 11px; color: #999; text-align: center;">
+                Portfolio: jishnupg.dev | GitHub: github.com/jishnupg | LinkedIn: linkedin.com/in/jishnupg
+            </p>
+        </div>
+    </div>
+</body>
+</html>
