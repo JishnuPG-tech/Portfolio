@@ -1,9 +1,8 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { FiArrowUp, FiGithub, FiLinkedin, FiMail } from 'react-icons/fi';
 import './Footer.css';
 
-const Footer = ({ scrollPosition }) => {
+const Footer = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -11,123 +10,70 @@ const Footer = ({ scrollPosition }) => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="footer">
+    <footer className="footer-editorial">
       <div className="container">
-        <div className="footer-content">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="footer-section"
-          >
-            <h3>Jishnu P G</h3>
-            <p>
-              Full Stack Developer | Machine Learning Enthusiast | Building intelligent solutions
+        <div className="footer-grid">
+          <div className="footer-brand-col">
+            <span className="footer-title">Jishnu P G</span>
+            <p className="footer-dek">
+              AI Engineer & Full-Stack Developer. Focused on physics-constrained neural architectures,
+              empirical ML validation, and deterministic utility engines.
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            viewport={{ once: true }}
-            className="footer-section"
-          >
-            <h4>Quick Links</h4>
-            <ul>
-              <li>
-                <a href="#home">Home</a>
-              </li>
-              <li>
-                <a href="#about">About</a>
-              </li>
-              <li>
-                <a href="#projects">Work</a>
-              </li>
-              <li>
-                <a href="#skills">Skills</a>
-              </li>
-              <li>
-                <a href="#contact">Contact</a>
-              </li>
+          <div className="footer-links-col">
+            <span className="footer-heading">Navigation</span>
+            <ul className="footer-nav-list">
+              <li><a href="#home">Overview</a></li>
+              <li><a href="#projects">Systems</a></li>
+              <li><a href="#skills">Stack</a></li>
+              <li><a href="#activity">Telemetry</a></li>
+              <li><a href="#contact">Contact</a></li>
             </ul>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="footer-section"
-          >
-            <h4>Contact</h4>
-            <ul>
-              <li>
-                <a href="mailto:jishnupg2005@gmail.com">jishnupg2005@gmail.com</a>
-              </li>
-              <li>
-                <a href="tel:+918590731979">+91 8590731979</a>
-              </li>
-              <li>
-                <span>Palakkad, Kerala</span>
-              </li>
-            </ul>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            viewport={{ once: true }}
-            className="footer-section"
-          >
-            <h4>Connect</h4>
-            <div className="social-links">
-              <a href="https://github.com/JishnuPG-tech" target="_blank" rel="noopener noreferrer" className="social-icon" title="GitHub">
-                <FiGithub size={20} />
+          <div className="footer-networks-col">
+            <span className="footer-heading">Networks</span>
+            <div className="footer-social-links">
+              <a
+                href="https://github.com/JishnuPG-tech"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer-link-item"
+              >
+                <FiGithub size={15} />
+                <span>GitHub</span>
               </a>
-              <a href="https://www.linkedin.com/in/jishnupg2005/" target="_blank" rel="noopener noreferrer" className="social-icon" title="LinkedIn">
-                <FiLinkedin size={20} />
+              <a
+                href="https://www.linkedin.com/in/jishnupg2005/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer-link-item"
+              >
+                <FiLinkedin size={15} />
+                <span>LinkedIn</span>
               </a>
-              <a href="mailto:jishnupg2005@gmail.com" className="social-icon" title="Email">
-                <FiMail size={20} />
+              <a href="mailto:jishnupg2005@gmail.com" className="footer-link-item">
+                <FiMail size={15} />
+                <span>Direct Mail</span>
               </a>
             </div>
-          </motion.div>
+          </div>
         </div>
 
-        <motion.div
-          className="footer-divider"
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          viewport={{ once: true }}
-        />
-
-        <div className="footer-bottom">
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
+        <div className="footer-bottom-bar">
+          <span className="colophon-text">
+            © {currentYear} Jishnu P G. Typeset in Newsreader & Plus Jakarta Sans.
+          </span>
+          <button
+            onClick={scrollToTop}
+            className="scroll-top-btn"
+            title="Return to top of page"
+            aria-label="Back to top"
           >
-            © {currentYear} Jishnu P G. All rights reserved. Version 1.0 • Last updated: 2025
-          </motion.p>
-
-          {scrollPosition > 300 && (
-            <motion.button
-              className="scroll-to-top"
-              onClick={scrollToTop}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 10 }}
-              transition={{ duration: 0.3 }}
-              aria-label="Scroll to top"
-            >
-              <FiArrowUp size={20} />
-            </motion.button>
-          )}
+            <span>Top</span>
+            <FiArrowUp size={14} />
+          </button>
         </div>
       </div>
     </footer>

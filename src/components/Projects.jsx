@@ -1,179 +1,208 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { FiExternalLink, FiGithub } from 'react-icons/fi';
-import { Zap, HelpCircle, Brain, TrendingUp } from 'lucide-react';
+import { FiArrowRight, FiGithub, FiCpu } from 'react-icons/fi';
 import './Projects.css';
 
 const Projects = () => {
-  const projects = [
+  const flagship = {
+    title: 'SmartWatt AI',
+    subtitle: 'Physics-Informed Hybrid Energy Estimator',
+    badge: 'Flagship Research System',
+    role: 'Lead Architect & Systems Developer',
+    year: '2025–2026',
+    problem:
+      'The "Linear Load Paradox": Standard data-driven AI models hallucinate on deterministic linear appliances (<31% accuracy) due to lack of temporal variance, while static physical equations fail to capture 18–22% real-world efficiency degradation in aging appliances.',
+    solution:
+      'Engineered a Dual-Inference Hybrid ML Architecture. Dynamically routes inference: multi-output neural networks predict efficiency loss and duty cycles for non-linear loads, while physics-enforced logic gates guarantee zero-error determinism on linear loads.',
+    results: [
+      { metric: '94.5%', label: 'Refrigerator Accuracy', diff: '+14.2% vs Pure AI' },
+      { metric: '86.0%', label: 'LED Light Accuracy', diff: '+65.9% vs Pure AI' },
+      { metric: '~98%', label: 'Linear Load Precision', diff: '0% hallucination error' },
+      { metric: '<20ms', label: 'Inference Latency', diff: 'Sub-second real-time' },
+    ],
+    techStack: [
+      'Physics-Informed ML',
+      'Python',
+      'FastAPI',
+      'TensorFlow/Keras',
+      'TypeScript',
+      'Next.js 14',
+      'PostgreSQL',
+      'Supabase',
+    ],
+    caseStudyUrl: '/smartwatt',
+    githubUrl: 'https://github.com/JishnuPG-tech/SmartWatt',
+  };
+
+  const secondaryProjects = [
     {
-      id: 1,
-      title: 'SmartWatt AI',
-      subtitle: 'Physics-Informed Hybrid Energy Estimator',
-      problem: 'The "Linear Load Paradox": Traditional calculators fail to capture aging degradation in appliances (assuming perfect efficiency), while pure AI models "hallucinate" on static linear loads (fans, lights) due to lack of pattern, achieving <31% accuracy.',
-      solution: 'Developed a novel Physics-Informed Hybrid AI Architecture. A Dual-Inference Engine dynamically switches strategies: Multi-Output Neural Networks predict "Efficiency Factors" for complex loads (AC, Fridge), while Physics-Enforced Logic Gates handles linear loads (Fans) to eliminate AI noise.',
-      technologies: [
-        'Python',
-        'FastAPI',
-        'TensorFlow/Keras',
-        'Next.js 14',
-        'TypeScript',
-        'Physics-Informed ML',
-        'PostgreSQL',
-        'Supabase',
-      ],
-      impact: [
-        '94.5% Accuracy on Refrigerators (+14.2% vs Pure AI)',
-        '86.0% Accuracy on LED Lights (+65.9% vs Pure AI)',
-        'Recovered Linear Load precision from 30% to ~98%',
-        'Captured 18-22% hidden power spread in aging appliances',
-        'Built full-stack verified "Wizard" workflow for Kerala context',
-        'Deployed production-ready Architecture with <20ms latency',
-      ],
-      image: 'Zap',
-      link: '/smartwatt',
-      github: 'https://github.com/JishnuPG-tech',
-      featured: true,
-      role: 'Project Head & Lead Developer',
-      keyInnovations: [
-        'Dual-Inference Engine: Hybrid switching between Neural Networks and Physics Logic',
-        'Multi-Output Regression: Simultaneously predicts Efficiency Degradation and Duty Cycles',
-        'User Intent Override: Respects manual user inputs as temporal ground truth',
-        'Physics-Enforced Constraints:Mathematically guarantees 0% error for fixed linear loads',
-      ],
+      title: 'Hermes-x Agent Suite',
+      subtitle: 'Autonomous Multi-Agent Harness & Mobile Client',
+      badge: 'Agentic AI & Mobile',
+      year: '2026',
+      description:
+        'Engineered an edge-to-edge autonomous agent development harness with bi-directional WebSocket event streaming, tool sandbox orchestration, and 1:1 Jetpack Compose mobile client steering.',
+      tags: ['Python', 'FastAPI', 'Jetpack Compose', 'Autonomous Agents', 'WebSockets', 'Docker'],
+      githubUrl: 'https://github.com/JishnuPG-tech/Hermes-x',
+    },
+    {
+      title: 'Omniroute Gateway',
+      subtitle: 'Unified AI Model Gateway & Routing Mesh',
+      badge: 'AI Infrastructure',
+      year: '2026',
+      description:
+        'High-performance model gateway dynamically routing inference requests across local and cloud LLM endpoints with intelligent fallback cascades, latency telemetry, and token tracking.',
+      tags: ['Python', 'FastAPI', 'LLM Routing', 'Local AI', 'AsyncIO', 'Telemetry'],
+      githubUrl: 'https://github.com/JishnuPG-tech/Omniroute',
+    },
+    {
+      title: 'OpenCode-Web',
+      subtitle: 'Cloud AI Code Studio & Vibe Workspace',
+      badge: 'Developer Tooling',
+      year: '2026',
+      description:
+        'Cloud-native and browser-based AI coding environment built for rapid vibe coding, automated context injection, code execution sandboxes, and agentic workflows.',
+      tags: ['TypeScript', 'Python', 'WebIDE', 'Vibe Coding', 'Container Sandbox'],
+      githubUrl: 'https://github.com/JishnuPG-tech/OpenCode-Web',
+    },
+    {
+      title: 'Instaxsave',
+      subtitle: 'High-Throughput Media Processing Engine',
+      badge: 'Media Infrastructure',
+      year: '2026',
+      description:
+        'Scalable TypeScript media extraction and asset management service optimized for concurrent stream parsing, low-latency asset transformations, and caching.',
+      tags: ['TypeScript', 'Node.js', 'Asset Pipeline', 'High Concurrency', 'REST API'],
+      githubUrl: 'https://github.com/JishnuPG-tech/Instaxsave',
     },
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 },
-    },
-  };
-
   return (
-    <section id="projects" className="projects">
+    <section id="projects" className="projects-editorial-section">
       <div className="container">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="section-header"
-        >
-          <h2 className="section-title">Featured Work</h2>
+        <div className="section-header">
+          <span className="section-eyebrow">01 / Selected Architecture</span>
+          <h2 className="section-title">Production Systems & Case Studies</h2>
           <p className="section-subtitle">
-            In-depth case studies of my full-stack and AI systems
+            Research-grade software engineering bridging physical laws, non-linear machine learning, and
+            reliable distributed systems.
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          className="projects-grid"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          {projects.map((project) => (
-            <motion.div
-              key={project.id}
-              variants={itemVariants}
-              className={`project-card ${project.featured ? 'featured' : ''}`}
-            >
-              <div className="project-header">
-                <div className="project-icon">
-                  {project.image === 'Zap' && <Zap className="icon-header" />}
-                </div>
-                <div className="project-actions">
-                  <Link
-                    to="/smartwatt"
-                    className="project-link"
-                    title="View Case Study"
-                  >
-                    <FiExternalLink size={20} />
-                  </Link>
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="project-link"
-                    title="GitHub Repository"
-                  >
-                    <FiGithub size={20} />
-                  </a>
-                </div>
+        {/* Flagship Whitepaper Card */}
+        <div className="flagship-whitepaper-card">
+          <div className="flagship-topbar">
+            <div className="flagship-metadata">
+              <span className="flagship-badge">{flagship.badge}</span>
+              <span className="flagship-year">{flagship.year}</span>
+              <span className="meta-sep">•</span>
+              <span className="flagship-role">{flagship.role}</span>
+            </div>
+            <div className="flagship-actions">
+              <Link to={flagship.caseStudyUrl} className="editorial-btn" title="Read Full Whitepaper">
+                <span>Read Case Study</span>
+                <FiArrowRight size={15} />
+              </Link>
+              <a
+                href={flagship.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="icon-link-btn"
+                title="View Repository"
+              >
+                <FiGithub size={17} />
+              </a>
+            </div>
+          </div>
+
+          <div className="flagship-content-grid">
+            {/* Left Narrative Column */}
+            <div className="flagship-narrative">
+              <h3 className="flagship-heading">{flagship.title}</h3>
+              <p className="flagship-subhead">{flagship.subtitle}</p>
+
+              <div className="editorial-callout problem">
+                <span className="callout-label">The Empirical Dilemma</span>
+                <p className="callout-text">{flagship.problem}</p>
               </div>
 
-              <h3 className="project-title">{project.title}</h3>
-              {project.role && <p className="project-role">{project.role}</p>}
-
-              <div className="project-details">
-                <div className="detail-item">
-                  <HelpCircle className="icon" />
-                  <div>
-                    <p className="detail-label">Challenge</p>
-                    <p className="detail-text">{project.problem}</p>
-                  </div>
-                </div>
-
-                <div className="detail-item">
-                  <Brain className="icon" />
-                  <div>
-                    <p className="detail-label">Solution</p>
-                    <p className="detail-text">{project.solution}</p>
-                  </div>
-                </div>
-
-                <div className="detail-item">
-                  <TrendingUp className="icon" />
-                  <div>
-                    <p className="detail-label">Impact & Results</p>
-                    <ul className="impact-list">
-                      {project.impact.map((item, idx) => (
-                        <li key={idx}>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
+              <div className="editorial-callout solution">
+                <span className="callout-label">The Hybrid Solution</span>
+                <p className="callout-text">{flagship.solution}</p>
               </div>
 
-              <div className="tech-tags">
-                {project.technologies.map((tech) => (
-                  <span key={tech} className="tech-tag">
+              <div className="flagship-tech-row">
+                {flagship.techStack.map((tech) => (
+                  <span key={tech} className="claude-tag-pill">
                     {tech}
                   </span>
                 ))}
               </div>
-            </motion.div>
-          ))}
-        </motion.div>
+            </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="projects-cta"
-        >
-          <p>Interested in more? Check out my GitHub for additional projects</p>
-          <a href="https://github.com/JishnuPG-tech" target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-            View All Projects on GitHub
-            <FiExternalLink size={20} />
-          </a>
-        </motion.div>
+            {/* Right Empirical Proof Column */}
+            <div className="flagship-empirical-col">
+              <div className="empirical-panel">
+                <div className="empirical-panel-header">
+                  <FiCpu className="panel-icon" />
+                  <span className="panel-title">Empirical Benchmark Verification</span>
+                </div>
+
+                <div className="empirical-metrics-grid">
+                  {flagship.results.map((item, idx) => (
+                    <div key={idx} className="empirical-stat-box">
+                      <span className="stat-value">{item.metric}</span>
+                      <span className="stat-label">{item.label}</span>
+                      <span className="stat-diff">{item.diff}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="empirical-footer-cta">
+                  <Link to={flagship.caseStudyUrl} className="whitepaper-deepdive-link">
+                    <span>Explore the interactive physics-informed simulator</span>
+                    <FiArrowRight size={14} />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Secondary Projects Grid */}
+        <div className="secondary-projects-grid">
+          {secondaryProjects.map((p, idx) => (
+            <div key={idx} className="secondary-project-card">
+              <div className="sec-card-header">
+                <div className="sec-meta-left">
+                  <span className="sec-badge">{p.badge}</span>
+                  <span className="sec-year">{p.year}</span>
+                </div>
+                <a
+                  href={p.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="sec-git-link"
+                  title="GitHub"
+                >
+                  <FiGithub size={16} />
+                </a>
+              </div>
+
+              <h4 className="sec-title">{p.title}</h4>
+              <p className="sec-sub">{p.subtitle}</p>
+              <p className="sec-desc">{p.description}</p>
+
+              <div className="sec-tags-row">
+                {p.tags.map((tag) => (
+                  <span key={tag} className="claude-tag-pill subtle">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

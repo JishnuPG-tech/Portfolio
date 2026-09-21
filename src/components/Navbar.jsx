@@ -8,31 +8,37 @@ const Navbar = ({ isDark, toggleTheme, scrollPosition }) => {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <nav className={`navbar ${scrollPosition > 50 ? 'scrolled' : ''}`}>
+    <header className={`navbar-header ${scrollPosition > 30 ? 'scrolled' : ''}`}>
       <div className="nav-container">
-        <div className="nav-logo">
-          JP<span>G</span>
+        <a href="#home" className="nav-brand">
+          <span className="brand-title">Jishnu P G</span>
+          <span className="brand-dot" />
+        </a>
+
+        <div className="nav-status-chip">
+          <span className="status-beacon" />
+          <span className="status-label">Available for Roles</span>
         </div>
 
         <ul className={`nav-menu ${isOpen ? 'active' : ''}`}>
           <li className="nav-item">
             <a href="#home" className="nav-link" onClick={() => setIsOpen(false)}>
-              Home
-            </a>
-          </li>
-          <li className="nav-item">
-            <a href="#about" className="nav-link" onClick={() => setIsOpen(false)}>
-              About
+              Overview
             </a>
           </li>
           <li className="nav-item">
             <a href="#projects" className="nav-link" onClick={() => setIsOpen(false)}>
-              Work
+              Systems
             </a>
           </li>
           <li className="nav-item">
             <a href="#skills" className="nav-link" onClick={() => setIsOpen(false)}>
-              Skills
+              Stack
+            </a>
+          </li>
+          <li className="nav-item">
+            <a href="#activity" className="nav-link" onClick={() => setIsOpen(false)}>
+              Telemetry
             </a>
           </li>
           <li className="nav-item">
@@ -43,21 +49,42 @@ const Navbar = ({ isDark, toggleTheme, scrollPosition }) => {
         </ul>
 
         <div className="nav-actions">
-          <a href="https://github.com/JishnuPG-tech" target="_blank" rel="noopener noreferrer" className="nav-social" title="GitHub">
-            <FiGithub size={20} />
+          <a
+            href="https://github.com/JishnuPG-tech"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nav-action-icon"
+            title="GitHub Profile"
+          >
+            <FiGithub size={18} />
           </a>
-          <a href="https://www.linkedin.com/in/jishnupg2005/" target="_blank" rel="noopener noreferrer" className="nav-social" title="LinkedIn">
-            <FiLinkedin size={20} />
+          <a
+            href="https://www.linkedin.com/in/jishnupg2005/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nav-action-icon"
+            title="LinkedIn Profile"
+          >
+            <FiLinkedin size={18} />
           </a>
-          <button className="theme-toggle" onClick={toggleTheme} title="Toggle theme">
-            {isDark ? <FiSun size={24} /> : <FiMoon size={24} />}
+          <button
+            className="theme-toggle-btn"
+            onClick={toggleTheme}
+            title={isDark ? 'Switch to Warm Alabaster mode' : 'Switch to Warm Charcoal mode'}
+            aria-label="Toggle visual theme"
+          >
+            {isDark ? <FiSun size={17} /> : <FiMoon size={17} />}
           </button>
-          <button className="hamburger" onClick={toggleMenu}>
-            {isOpen ? <FiX size={28} /> : <FiMenu size={28} />}
+          <button
+            className="hamburger-btn"
+            onClick={toggleMenu}
+            aria-label="Toggle navigation menu"
+          >
+            {isOpen ? <FiX size={22} /> : <FiMenu size={22} />}
           </button>
         </div>
       </div>
-    </nav>
+    </header>
   );
 };
 

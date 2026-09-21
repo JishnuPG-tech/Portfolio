@@ -1,96 +1,61 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Layers, Brain, Eye, Gauge, Code2 } from 'lucide-react';
 import './EngineeringFocus.css';
 
 const EngineeringFocus = () => {
   const focuses = [
     {
-      icon: Layers,
-      title: 'System Design',
-      description: 'Scalable architecture over quick prototypes. Clean abstractions that grow with complexity.',
+      icon: Brain,
+      title: 'Physics-Informed ML',
+      description: 'Domain physics constraints paired with deep learning. Why physics + neural networks outperform pure data-driven approaches.',
     },
     {
-      icon: Brain,
-      title: 'Hybrid AI',
-      description: 'Data-driven ML plus domain knowledge. Why physics + neural networks beat pure ML.',
+      icon: Layers,
+      title: 'System Architecture',
+      description: 'Scalable foundations over fragile prototypes. Clear boundaries, modular contracts, and resilience under real-world traffic.',
     },
     {
       icon: Eye,
-      title: 'Explainable AI',
-      description: 'Systems that users understand. No black boxes. Interpretability matters.',
+      title: 'Explainable AI & Auditing',
+      description: 'Transparent systems users and regulators can trust. No inscrutable black boxes; verifiable mathematical logic throughout.',
     },
     {
       icon: Gauge,
-      title: 'Performance',
-      description: 'Frontend optimization, API efficiency, real-time processing. Sub-100ms latency counts.',
+      title: 'Latency & Precision',
+      description: 'Sub-20ms inference pipelines, lean bundles, and deterministic calculations on linear appliances and tariff brackets.',
     },
     {
       icon: Code2,
-      title: 'Code Quality',
-      description: 'Maintainable and modular codebases. Future-proof implementations.',
+      title: 'Code Craftsmanship',
+      description: 'Type-safe contracts, atomic git discipline, thorough testing, and clean maintainable codebases.',
     },
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 },
-    },
-  };
-
   return (
-    <section className="engineering-focus">
+    <section className="engineering-focus-section">
       <div className="container">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="section-header"
-        >
-          <h2 className="section-title">Engineering Focus</h2>
+        <div className="section-header">
+          <span className="section-eyebrow">00 / Philosophy</span>
+          <h2 className="section-title">Core Engineering Principles</h2>
           <p className="section-subtitle">
-            Core principles that guide my development approach
+            The foundational discipline guiding decisions from initial mathematical formulation to high-throughput production deployment.
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          className="focus-grid"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
+        <div className="focus-grid-editorial">
           {focuses.map((focus, index) => {
             const Icon = focus.icon;
             return (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                className="focus-card"
-              >
-                <div className="focus-icon">
-                  <Icon size={32} />
+              <div key={index} className="focus-card-editorial">
+                <div className="focus-icon-wrap">
+                  <Icon size={24} className="focus-icon-svg" />
                 </div>
-                <h3>{focus.title}</h3>
-                <p>{focus.description}</p>
-              </motion.div>
+                <h3 className="focus-title">{focus.title}</h3>
+                <p className="focus-dek">{focus.description}</p>
+              </div>
             );
           })}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

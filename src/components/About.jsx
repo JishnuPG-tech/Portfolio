@@ -1,186 +1,239 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code2, Lightbulb, Zap, GraduationCap } from 'lucide-react';
+import { Code2, Zap, GraduationCap, Sparkles, Brain, Cpu, Compass } from 'lucide-react';
 import './About.css';
 
 const About = () => {
   const philosophyPoints = [
     {
-      title: 'Physics-Informed Design',
-      description: 'AI shouldn’t guess what Physics already knows. I build hybrid systems that combine the best of both worlds.',
+      icon: <Sparkles size={20} className="philo-icon" />,
+      title: 'Vibe Coding with Architectural Rigor',
+      description:
+        'Harnessing AI coding agents, autonomous LLM workflows, and prompt-driven orchestration to ship production software at 10x velocity without sacrificing code quality or maintainability.',
     },
     {
-      title: 'Explainable AI (XAI)',
-      description: 'Black-box models effectively do not exist in high-stakes environments. I prioritize transparency and auditability.',
+      icon: <Brain size={20} className="philo-icon" />,
+      title: 'Physics-Informed Hybrid AI',
+      description:
+        'AI should never hallucinate what established physical laws already govern. I design hybrid architectures bridging empirical domain rules and deep neural networks.',
     },
     {
-      title: 'Production-Grade Reliability',
-      description: 'Code is only as good as its uptime. I design fault-tolerant systems ready for the real world.',
+      icon: <Compass size={20} className="philo-icon" />,
+      title: 'Explainable AI & Auditing (XAI)',
+      description:
+        'High-stakes industrial and energy systems require mathematical transparency. No opaque black boxes—every decision gate and loss function is verifiable.',
     },
     {
-      title: 'Data-Driven optimization',
-      description: 'Hypotheses are cheap; verified benchmarks are valuable. I let the data dictate architectural decisions.',
+      icon: <Zap size={20} className="philo-icon" />,
+      title: 'Production-Grade Resilience',
+      description:
+        'Prototypes are easy; bulletproof production systems require deterministic logic, sub-20ms latency budgets, and rigorous edge-case handling.',
     },
   ];
 
   const workAreas = [
     {
-      icon: <Code2 className="work-icon" />,
-      title: 'Full-Stack Engineering',
-      tech: 'Next.js 14 • React • TypeScript • FastAPI',
+      icon: <Sparkles className="work-icon highlight" />,
+      title: 'AI-Native & Vibe Coding',
+      tech: 'Autonomous Agents • Claude Code • Antigravity • Prompt Architecture • Rapid Prototyping',
+      tag: 'Velocity & Delivery',
     },
     {
-      icon: <Lightbulb className="work-icon" />,
-      title: 'Hybrid AI Systems',
-      tech: 'TensorFlow • Physics-Informed ML • Keras',
+      icon: <Cpu className="work-icon" />,
+      title: 'Hybrid AI & Machine Learning',
+      tech: 'Physics-Informed ML • TensorFlow • Keras • Scikit-learn • Multi-Output Regression',
+      tag: 'Research & ML',
+    },
+    {
+      icon: <Code2 className="work-icon" />,
+      title: 'Full-Stack Web & Mobile',
+      tech: 'Next.js 14 • React 19 • TypeScript • Jetpack Compose • FastAPI • Python',
+      tag: 'Full-Stack',
     },
     {
       icon: <Zap className="work-icon" />,
-      title: 'System Architecture',
-      tech: 'Scalable Microservices • PostgreSQL • Supabase',
+      title: 'Systems & Infrastructure',
+      tech: 'Scalable Microservices • PostgreSQL • Supabase • WebSockets • Docker • Linux',
+      tag: 'Architecture',
     },
   ];
 
   const education = [
     {
       degree: 'Bachelor of Computer Applications (BCA)',
+      status: 'Graduated — Class of 2026',
       institution: 'Yuvakshetra Institute of Management Studies (YIMS)',
       period: '2023 - 2026',
+      details: 'Specialized in Artificial Intelligence, Software Engineering, and Database Systems.',
     },
     {
-      degree: 'Higher Secondary (Computer Science)',
+      degree: 'Higher Secondary Education (Computer Science)',
+      status: 'Completed with Honors',
       institution: 'GHSS Vellinezhi, Palakkad',
-      period: 'Completed 2023',
+      period: '2021 - 2023',
+      details: 'Foundational coursework in C++, Python, Computer Hardware, and Mathematics.',
     },
   ];
 
   return (
-    <section id="about" className="about">
+    <section id="about" className="about-editorial-section">
       <div className="container">
-        {/* Section Heading */}
+        {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           viewport={{ once: true }}
-          className="about-heading"
+          className="section-header"
         >
-          <h2 className="about-heading-title">About Me</h2>
-        </motion.div>
-
-        {/* Sharp Intro Paragraph */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="intro-block"
-        >
-          <p className="intro-text">
-            I am a <strong>Final Year BCA Student</strong>, pursuing a career as an <strong>AI Engineer</strong> & <strong>Full-Stack Developer</strong>. specializing in building intelligent systems that bridge the gap between theoretical modeling and real-world application.
-            Currently leading the <strong>SmartWatt AI</strong> project, I focus on solving complex domain problems—like the "Linear Load Paradox"—by architecting hybrid solutions that are accurate, explainable, and production-ready.
+          <span className="section-eyebrow">00 / Biography & Focus</span>
+          <h2 className="section-title">About & Engineering Profile</h2>
+          <p className="section-subtitle">
+            BCA Graduate, AI Engineer, and prolific full-stack developer blending rapid vibe coding with
+            disciplined systems engineering.
           </p>
         </motion.div>
 
-        {/* Impact Strip */}
+        {/* Lead Editorial Bio Card */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
           viewport={{ once: true }}
-          className="impact-strip"
+          className="lead-bio-card"
         >
-          <span>Physics-Informed AI</span>
-          <span className="separator">•</span>
-          <span>Lead Developer @ SmartWatt</span>
-          <span className="separator">•</span>
-          <span>Full-Stack Architecture</span>
+          <div className="bio-topline">
+            <span className="bio-status-badge">
+              <span className="badge-pulse-dot" />
+              BCA Graduate • Class of 2026
+            </span>
+            <span className="bio-tag">AI Engineer & Full-Stack Developer</span>
+          </div>
+
+          <p className="bio-text">
+            I am a <strong>BCA Graduate</strong> and <strong>AI Engineer & Full-Stack Developer</strong> specializing
+            in building intelligent production systems that bridge theoretical physics and real-world software.
+            A passionate advocate of <strong>AI-native development and 'vibe coding'</strong>, I leverage autonomous
+            coding agents and prompt-driven orchestration to design, prototype, and ship a prolific range of
+            complex, high-performance applications at 10x speed.
+          </p>
+
+          <p className="bio-text secondary">
+            As the lead architect of <strong>SmartWatt AI</strong>, I focus on solving deep mathematical challenges—such
+            as the <em>"Linear Load Paradox"</em> in residential energy disaggregation—by engineering hybrid solutions
+            that are mathematically sound, transparently explainable, and production-ready.
+          </p>
+
+          {/* Quick Credential Badges */}
+          <div className="bio-badges-row">
+            <div className="bio-chip">
+              <Sparkles size={14} className="chip-icon" />
+              <span>Vibe Coding & Agent Workflows</span>
+            </div>
+            <div className="bio-chip">
+              <Brain size={14} className="chip-icon" />
+              <span>Physics-Informed ML</span>
+            </div>
+            <div className="bio-chip">
+              <Zap size={14} className="chip-icon" />
+              <span>Sub-20ms Production Latency</span>
+            </div>
+            <div className="bio-chip">
+              <GraduationCap size={14} className="chip-icon" />
+              <span>BCA Graduate '26</span>
+            </div>
+          </div>
         </motion.div>
 
-        {/* Engineering Philosophy */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.15 }}
-          viewport={{ once: true }}
-          className="philosophy-section"
-        >
-          <h3 className="section-title">Engineering Philosophy</h3>
-          <div className="philosophy-grid">
+        {/* Engineering Philosophy Cards */}
+        <div className="about-sub-section">
+          <div className="sub-section-header">
+            <h3 className="sub-section-title">Core Philosophy & Approach</h3>
+            <span className="sub-section-count">4 Principles</span>
+          </div>
+
+          <div className="philosophy-cards-grid">
             {philosophyPoints.map((point, index) => (
               <motion.div
                 key={index}
-                className="philosophy-card"
-                initial={{ opacity: 0, y: 15 }}
+                className="philo-card"
+                initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.15 + index * 0.05 }}
+                transition={{ duration: 0.45, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
                 viewport={{ once: true }}
+                whileHover={{ y: -4, transition: { duration: 0.2 } }}
               >
-                <h4 className="philosophy-title">{point.title}</h4>
-                <p className="philosophy-desc">{point.description}</p>
+                <div className="philo-icon-box">{point.icon}</div>
+                <h4 className="philo-heading">{point.title}</h4>
+                <p className="philo-text">{point.description}</p>
               </motion.div>
             ))}
           </div>
-        </motion.div>
+        </div>
 
-        {/* What I Work With */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="work-section"
-        >
-          <h3 className="section-title">Technical Domain</h3>
-          <div className="work-grid">
+        {/* Technical Domain / Work Areas */}
+        <div className="about-sub-section">
+          <div className="sub-section-header">
+            <h3 className="sub-section-title">Specialized Domains & Tooling</h3>
+            <span className="sub-section-count">Competency Matrix</span>
+          </div>
+
+          <div className="work-areas-grid">
             {workAreas.map((area, index) => (
               <motion.div
                 key={index}
-                className="work-card"
-                initial={{ opacity: 0, y: 20 }}
+                className="work-domain-card"
+                initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 + index * 0.08 }}
+                transition={{ duration: 0.45, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
                 viewport={{ once: true }}
+                whileHover={{ y: -4, transition: { duration: 0.2 } }}
               >
-                <div className="work-icon-wrapper">{area.icon}</div>
-                <h4 className="work-title">{area.title}</h4>
-                <p className="work-tech">{area.tech}</p>
+                <div className="work-card-top">
+                  <div className="work-icon-box">{area.icon}</div>
+                  <span className="domain-tag-pill">{area.tag}</span>
+                </div>
+                <h4 className="work-domain-title">{area.title}</h4>
+                <p className="work-domain-tech">{area.tech}</p>
               </motion.div>
             ))}
           </div>
-        </motion.div>
+        </div>
 
-        {/* Education */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.25 }}
-          viewport={{ once: true }}
-          className="education-section"
-        >
-          <h3 className="section-title">Education</h3>
-          <div className="education-timeline">
+        {/* Education & Academic Foundation */}
+        <div className="about-sub-section">
+          <div className="sub-section-header">
+            <h3 className="sub-section-title">Academic Foundation</h3>
+            <span className="sub-section-count">Credentials</span>
+          </div>
+
+          <div className="education-cards-grid">
             {education.map((edu, index) => (
               <motion.div
                 key={index}
-                className="education-card"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.25 + index * 0.1 }}
+                className="edu-card"
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.45, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 viewport={{ once: true }}
+                whileHover={{ y: -3, transition: { duration: 0.2 } }}
               >
-                <div className="timeline-marker">
-                  <GraduationCap size={18} />
+                <div className="edu-icon-wrap">
+                  <GraduationCap size={22} className="edu-icon" />
                 </div>
-                <div className="education-content">
-                  <h4 className="education-degree">{edu.degree}</h4>
-                  <p className="education-institution">{edu.institution}</p>
-                  <p className="education-period">{edu.period}</p>
+                <div className="edu-body">
+                  <div className="edu-header-line">
+                    <h4 className="edu-degree">{edu.degree}</h4>
+                    <span className="edu-period">{edu.period}</span>
+                  </div>
+                  <span className="edu-status-badge">{edu.status}</span>
+                  <p className="edu-institution">{edu.institution}</p>
+                  <p className="edu-details">{edu.details}</p>
                 </div>
               </motion.div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

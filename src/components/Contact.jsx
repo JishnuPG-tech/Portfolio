@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { FiMail, FiPhone, FiMapPin, FiSend } from 'react-icons/fi';
-import { FiGithub, FiLinkedin } from 'react-icons/fi';
+import { FiMail, FiPhone, FiMapPin, FiSend, FiGithub, FiLinkedin, FiCopy, FiCheck } from 'react-icons/fi';
 import './Contact.css';
 
 const Contact = () => {
@@ -13,6 +11,13 @@ const Contact = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+  const [copiedEmail, setCopiedEmail] = useState(false);
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText('jishnupg2005@gmail.com');
+    setCopiedEmail(true);
+    setTimeout(() => setCopiedEmail(false), 2000);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,21 +32,20 @@ const Contact = () => {
     setIsSubmitting(true);
     setSubmitStatus(null);
 
-    const object = {
+    const payload = {
       access_key: '18c50e21-3fcb-402b-9747-3397d1d49349',
-      ...formData
+      ...formData,
     };
-    const json = JSON.stringify(object);
 
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json"
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
         },
-        body: json
-      }).then((res) => res.json());
+        body: JSON.stringify(payload),
+      }).then((r) => r.json());
 
       if (res.success) {
         setSubmitStatus('success');
@@ -50,7 +54,7 @@ const Contact = () => {
         setSubmitStatus('error');
       }
     } catch (error) {
-      console.log(error);
+      console.error('Submission error:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -60,202 +64,165 @@ const Contact = () => {
     }
   };
 
-  const contactInfo = [
-    {
-      icon: FiMail,
-      label: 'Email',
-      value: 'jishnupg2005@gmail.com',
-      href: 'mailto:jishnupg2005@gmail.com',
-    },
-    {
-      icon: FiPhone,
-      label: 'Phone',
-      value: '+91 8590731979',
-      href: 'tel:+918590731979',
-    },
-    {
-      icon: FiMapPin,
-      label: 'Location',
-      value: 'Palakkad, Kerala',
-      href: '#',
-    },
-  ];
-
-  const socialLinks = [
-    {
-      icon: FiGithub,
-      label: 'GitHub',
-      href: 'https://github.com/JishnuPG-tech',
-    },
-    {
-      icon: FiLinkedin,
-      label: 'LinkedIn',
-      href: 'https://www.linkedin.com/in/jishnupg2005/',
-    },
-  ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 },
-    },
-  };
-
   return (
-    <section id="contact" className="contact">
+    <section id="contact" className="contact-editorial-section">
       <div className="container">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="section-header"
-        >
-          <h2 className="section-title">Get In Touch</h2>
+        <div className="section-header">
+          <span className="section-eyebrow">04 / Correspondence</span>
+          <h2 className="section-title">Initiate Contact & Collaboration</h2>
           <p className="section-subtitle">
-            Let's collaborate and build meaningful, real-world solutions together
+            Available for software engineering roles, AI consulting, or technical systems dialogue.
           </p>
-        </motion.div>
+        </div>
 
-        <div className="contact-wrapper">
-          <motion.div
-            className="contact-info"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <h3>Contact Information</h3>
+        <div className="contact-editorial-grid">
+          {/* Left Column: Direct Inquiries */}
+          <div className="contact-inquiry-card">
+            <h3 className="inquiry-headline">Let’s engineer something exceptional together.</h3>
+            <p className="inquiry-dek">
+              Based in Palakkad, Kerala — open to local, hybrid, and remote engineering opportunities.
+            </p>
 
-            <div className="info-items">
-              {contactInfo.map((info, index) => {
-                const Icon = info.icon;
-                return (
-                  <motion.a
-                    key={index}
-                    href={info.href}
-                    variants={itemVariants}
-                    className="info-item"
-                  >
-                    <Icon size={24} className="info-icon" />
-                    <div>
-                      <p className="info-label">{info.label}</p>
-                      <p className="info-value">{info.value}</p>
-                    </div>
-                  </motion.a>
-                );
-              })}
-            </div>
+            <div className="inquiry-details-list">
+              <div className="inquiry-item" onClick={handleCopyEmail}>
+                <div className="inquiry-icon-box">
+                  <FiMail className="inquiry-icon" />
+                </div>
+                <div className="inquiry-meta">
+                  <span className="inquiry-label">Direct Email</span>
+                  <span className="inquiry-val">jishnupg2005@gmail.com</span>
+                </div>
+                <button className="copy-chip-btn" title="Copy email address" aria-label="Copy email">
+                  {copiedEmail ? <FiCheck color="#788C5D" /> : <FiCopy />}
+                </button>
+              </div>
 
-            <div className="social-section">
-              <h4>Connect With Me</h4>
-              <div className="social-links">
-                {socialLinks.map((social, index) => {
-                  const Icon = social.icon;
-                  return (
-                    <motion.a
-                      key={index}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="social-icon-link"
-                      whileHover={{ scale: 1.2, rotate: 10 }}
-                      whileTap={{ scale: 0.95 }}
-                      title={social.label}
-                    >
-                      <Icon size={24} />
-                    </motion.a>
-                  );
-                })}
+              <a href="tel:+918590731979" className="inquiry-item link">
+                <div className="inquiry-icon-box">
+                  <FiPhone className="inquiry-icon" />
+                </div>
+                <div className="inquiry-meta">
+                  <span className="inquiry-label">Telephone</span>
+                  <span className="inquiry-val">+91 85907 31979</span>
+                </div>
+              </a>
+
+              <div className="inquiry-item">
+                <div className="inquiry-icon-box">
+                  <FiMapPin className="inquiry-icon" />
+                </div>
+                <div className="inquiry-meta">
+                  <span className="inquiry-label">Primary Location</span>
+                  <span className="inquiry-val">Palakkad, Kerala, India</span>
+                </div>
               </div>
             </div>
-          </motion.div>
 
-          <motion.form
-            className="contact-form"
-            onSubmit={handleSubmit}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <div className="form-group">
-              <label htmlFor="name">Name</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                placeholder="Your name"
-              />
+            <div className="inquiry-networks">
+              <span className="network-label">Verified Networks:</span>
+              <div className="network-links">
+                <a
+                  href="https://github.com/JishnuPG-tech"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="network-btn"
+                >
+                  <FiGithub size={15} />
+                  <span>GitHub</span>
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/jishnupg2005/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="network-btn"
+                >
+                  <FiLinkedin size={15} />
+                  <span>LinkedIn</span>
+                </a>
+              </div>
             </div>
+          </div>
 
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                placeholder="your@email.com"
-              />
-            </div>
+          {/* Right Column: Dispatch Form */}
+          <div className="contact-form-card">
+            <form onSubmit={handleSubmit} className="editorial-form">
+              <div className="form-group">
+                <label htmlFor="name" className="form-label">
+                  Your Full Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="e.g. Eleanor Vance"
+                  required
+                  className="form-input"
+                />
+              </div>
 
-            <div className="form-group">
-              <label htmlFor="message">Message</label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                required
-                placeholder="Your message here..."
-                rows="5"
-              />
-            </div>
+              <div className="form-group">
+                <label htmlFor="email" className="form-label">
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="e.g. eleanor@company.org"
+                  required
+                  className="form-input"
+                />
+              </div>
 
-            <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
-              {isSubmitting ? 'Sending...' : 'Send Message'}
-              <FiSend size={20} />
-            </button>
+              <div className="form-group">
+                <label htmlFor="message" className="form-label">
+                  Project or Opportunity Details
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Briefly describe the engineering role, system architecture, or inquiry..."
+                  rows={5}
+                  required
+                  className="form-input textarea"
+                />
+              </div>
 
-            {submitStatus === 'success' && (
-              <motion.div
-                className="success-message"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="btn btn-primary submit-btn"
               >
-                ✓ Message sent successfully! I'll get back to you soon.
-              </motion.div>
-            )}
+                {isSubmitting ? (
+                  <span>Transmitting...</span>
+                ) : (
+                  <>
+                    <span>Transmit Message</span>
+                    <FiSend size={15} />
+                  </>
+                )}
+              </button>
 
-            {submitStatus === 'error' && (
-              <motion.div
-                className="error-message"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                style={{ color: '#ef4444', marginTop: '1rem', textAlign: 'center' }}
-              >
-                ⚠ Something went wrong. Please try again or email directly.
-              </motion.div>
-            )}
-          </motion.form>
+              {submitStatus === 'success' && (
+                <div className="form-alert success">
+                  <FiCheck size={16} />
+                  <span>Message delivered successfully. I will respond within 24 hours.</span>
+                </div>
+              )}
+
+              {submitStatus === 'error' && (
+                <div className="form-alert error">
+                  <span>Unable to dispatch message. Please email directly at jishnupg2005@gmail.com.</span>
+                </div>
+              )}
+            </form>
+          </div>
         </div>
       </div>
     </section>

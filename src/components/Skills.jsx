@@ -1,148 +1,106 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Monitor, Cpu, Zap } from 'lucide-react';
+import { FiCpu, FiLayout, FiServer, FiDatabase } from 'react-icons/fi';
 import './Skills.css';
 
 const Skills = () => {
   const skillCategories = [
     {
-      category: 'Frontend',
+      category: 'Machine Learning & AI',
+      code: 'ML/AI',
+      icon: <FiCpu className="field-icon" />,
+      description: 'Physics-informed neural networks, non-linear regression, and empirical model validation.',
       skills: [
-        'React',
-        'Next.js',
-        'HTML/CSS',
-        'JavaScript',
-        'Tailwind CSS',
+        'Physics-Informed ML',
+        'Dual-Inference Routing',
+        'TensorFlow & Keras',
+        'Scikit-learn',
+        'Multi-Output Regression',
+        'Pandas & NumPy',
+        'Model Benchmarking',
       ],
     },
     {
-      category: 'Backend',
-      skills: ['Python', 'FastAPI', 'PHP', 'Java', 'SQL', 'PostgreSQL'],
+      category: 'Frontend & Mobile',
+      code: 'UI/UX',
+      icon: <FiLayout className="field-icon" />,
+      description: 'Responsive, accessible web interfaces and native edge-to-edge mobile apps.',
+      skills: [
+        'React 18 / 19',
+        'Next.js 14 (App Router)',
+        'Jetpack Compose (Android)',
+        'TypeScript',
+        'Tailwind CSS',
+        'Recharts & Plotly.js',
+        'Web Accessibility (a11y)',
+      ],
     },
     {
-      category: 'Machine Learning',
-      skills: ['TensorFlow', 'Keras', 'Scikit-learn', 'Pandas', 'NumPy'],
+      category: 'Backend & Systems',
+      code: 'SYS/API',
+      icon: <FiServer className="field-icon" />,
+      description: 'High-throughput asynchronous APIs, real-time WebSockets, and mathematical calculation logic.',
+      skills: [
+        'FastAPI (Python)',
+        'Python 3.11+',
+        'WebSockets & Streaming',
+        'Docker Containerization',
+        'KSEB Tariff Engines',
+        'RESTful Microservices',
+        'Linux / Shell Scripting',
+      ],
     },
     {
-      category: 'Tools & Others',
-      skills: ['Git', 'Android Development', 'Plotly', 'DBMS', 'Linux/Unix'],
+      category: 'Databases & Infrastructure',
+      code: 'DATA/OPS',
+      icon: <FiDatabase className="field-icon" />,
+      description: 'Relational database schema modeling, SQL query tuning, and cloud persistence.',
+      skills: [
+        'PostgreSQL',
+        'Supabase (Auth & DB)',
+        'SQL Optimization',
+        'Database Migrations',
+        'Git Branch Workflows',
+        'Lighthouse Web Vitals',
+        'CI/CD Pipelines',
+      ],
     },
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.4 },
-    },
-  };
-
-  const categoryVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 },
-    },
-  };
-
   return (
-    <section id="skills" className="skills">
+    <section id="skills" className="skills-fieldguide-section">
       <div className="container">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="section-header"
-        >
-          <h2 className="section-title">Skills & Expertise</h2>
+        <div className="section-header">
+          <span className="section-eyebrow">02 / Technical Discipline</span>
+          <h2 className="section-title">Core Competencies & Stack</h2>
           <p className="section-subtitle">
-            Proficient in a diverse range of technologies and frameworks
+            A structured catalogue of languages, frameworks, and specialized AI architectures implemented
+            across verified projects.
           </p>
-          <p className="section-description">
-            Technologies I have used in real projects or hands-on implementations.
-          </p>
-        </motion.div>
-
-        <div className="skills-grid">
-          {skillCategories.map((categoryData, index) => (
-            <motion.div
-              key={index}
-              variants={categoryVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="skill-category"
-            >
-              <h3 className="category-title">{categoryData.category}</h3>
-              <motion.div
-                className="skill-items"
-                variants={containerVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-              >
-                {categoryData.skills.map((skill, skillIndex) => (
-                  <motion.div
-                    key={skillIndex}
-                    variants={itemVariants}
-                    className="skill-item"
-                  >
-                    <span className="skill-name">{skill}</span>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </motion.div>
-          ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="skills-highlight"
-        >
-          <div className="highlight-item">
-            <Monitor className="icon" />
-            <div>
-              <h4>Full Stack Development</h4>
-              <p>
-                Building end-to-end solutions with modern frameworks and best practices
-              </p>
+        <div className="skills-fieldguide-grid">
+          {skillCategories.map((cat, idx) => (
+            <div key={idx} className="fieldguide-card">
+              <div className="card-topline">
+                <div className="cat-icon-cluster">
+                  {cat.icon}
+                  <span className="cat-title">{cat.category}</span>
+                </div>
+                <span className="cat-code">{cat.code}</span>
+              </div>
+
+              <p className="cat-dek">{cat.description}</p>
+
+              <div className="cat-tags-list">
+                {cat.skills.map((skill, sIdx) => (
+                  <span key={sIdx} className="fieldguide-tag">
+                    {skill}
+                  </span>
+                ))}
+              </div>
             </div>
-          </div>
-          <div className="highlight-item">
-            <Cpu className="icon" />
-            <div>
-              <h4>Machine Learning</h4>
-              <p>
-                Developing ML models for real-world applications and data analytics
-              </p>
-            </div>
-          </div>
-          <div className="highlight-item">
-            <Zap className="icon" />
-            <div>
-              <h4>Performance Optimization</h4>
-              <p>
-                Creating fast, scalable applications with focus on user experience
-              </p>
-            </div>
-          </div>
-        </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
