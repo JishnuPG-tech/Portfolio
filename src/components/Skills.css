@@ -113,3 +113,4 @@
     grid-template-columns: 1fr;
   }
 }
+.fieldguide-card { min-width: 0; }

@@ -375,3 +375,4 @@
     display: none;
   }
 }
+.hero-masthead, .hero-specimen-wrap { min-width: 0; }

@@ -728,6 +728,7 @@
     gap: 0.15rem;
   }
 }
-.contribution-heatmap-card { overflow-x: hidden; }
-.live-events-drawer { overflow-x: hidden; }
+.contribution-heatmap-card { min-width: 0; }
+.live-events-drawer { min-width: 0; }
 .event-content { min-width: 0; }
+.telemetry-stat-card, .repo-specimen-card { min-width: 0; }

@@ -77,4 +77,4 @@
   .focus-grid-editorial {
     grid-template-columns: 1fr;
   }
-}
+}.focus-card-editorial, .workflow-step { min-width: 0; }

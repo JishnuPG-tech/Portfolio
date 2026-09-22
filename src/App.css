@@ -87,7 +87,7 @@ section {
 }
 
 /* Utilities */
-.container {
+.container { width: 100%;
   max-width: 1160px;
   margin: 0 auto;
   padding: 0 2rem;
@@ -236,7 +236,7 @@ h4, h5, h6 {
   .section-title {
     font-size: 2.1rem;
   }
-  .container {
+  .container { width: 100%;
     padding: 0 1.25rem;
   }
   .btn {

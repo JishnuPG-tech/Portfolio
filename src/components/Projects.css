@@ -431,3 +431,5 @@
     grid-template-columns: 1fr;
   }
 }
+@media (max-width: 600px) { .empirical-metrics-grid { grid-template-columns: 1fr; gap: 1rem; } }
+.flagship-whitepaper-card, .secondary-project-card { min-width: 0; }

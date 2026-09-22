@@ -417,4 +417,4 @@
   .lead-bio-card {
     padding: 1.85rem;
   }
-}
+}.philo-card, .work-domain-card, .edu-card { min-width: 0; }
