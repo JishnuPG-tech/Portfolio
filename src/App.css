@@ -244,3 +244,4 @@ h4, h5, h6 {
     font-size: 0.9rem;
   }
 }
+html, body { overflow-x: hidden; max-width: 100vw; }
