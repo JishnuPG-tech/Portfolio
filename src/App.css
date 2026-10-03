@@ -600,3 +600,15 @@ button,input,textarea,select{font:inherit}button,a{-webkit-tap-highlight-color:t
     border-radius:11px;
   }
 }
+
+
+/* Minimal selected-project thumbnail treatment */
+.project-art-empty{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  background:#111311;
+  border:0;
+  box-shadow:inset 0 0 80px rgba(0,0,0,.16);
+}
