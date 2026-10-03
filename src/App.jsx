@@ -4,7 +4,7 @@ import {
   Activity, ArrowRight, ArrowUpRight, BrainCircuit, CalendarDays, Check,
   Code2, Copy, Download, ExternalLink, GitCommitHorizontal, GitFork,
   Github, Layers3, Linkedin, Mail, MapPin, Menu, Moon, Server,
-  Smartphone, Sparkles, Star, Sun, Terminal, Users, X
+  Smartphone, Sparkles, Star, Sun, Users, X
 } from 'lucide-react';
 import './App.css';
 import CaseStudy from './pages/CaseStudy';
@@ -179,6 +179,91 @@ function repoScore(repo) {
     + (repo.description ? 2 : 0);
 }
 
+
+function ProfileAvatar({ src, className = '' }) {
+  if (!src) return <span className={`avatar-fallback ${className}`}>JPG</span>;
+  return (
+    <span className={`avatar-crop ${className}`}>
+      <img src={src} alt="" />
+    </span>
+  );
+}
+
+function ProjectArtwork({ accent }) {
+  if (accent === 'network') {
+    return (
+      <div className="project-art art-network">
+        <div className="network-grid" />
+        <div className="route route-a" />
+        <div className="route route-b" />
+        <div className="route route-c" />
+        <span className="network-node n1" />
+        <span className="network-node n2" />
+        <span className="network-node n3" />
+        <span className="network-node n4" />
+        <div className="route-labels"><span>CLIENT</span><span>ROUTER</span><span>MODEL</span></div>
+      </div>
+    );
+  }
+
+  if (accent === 'terminal') {
+    return (
+      <div className="project-art art-terminal">
+        <div className="terminal-window">
+          <div className="terminal-bar"><span /><span /><span /><b>OPENCODE</b></div>
+          <div className="terminal-body">
+            <p><i>$</i> opencode serve</p>
+            <p><i>›</i> agent connected</p>
+            <p><i>›</i> workspace synced</p>
+            <div className="terminal-meter"><span /><span /><span /><span /></div>
+          </div>
+        </div>
+        <span className="terminal-badge">AGENT · PTY · SYNC</span>
+      </div>
+    );
+  }
+
+  if (accent === 'mobile') {
+    return (
+      <div className="project-art art-mobile">
+        <div className="media-phone">
+          <div className="media-screen">
+            <div className="media-cover" />
+            <div className="media-row"><span /><span /><span /></div>
+            <div className="media-progress"><i /></div>
+          </div>
+          <div className="phone-notch" />
+        </div>
+        <div className="media-chip chip-a">DOWNLOAD</div>
+        <div className="media-chip chip-b">FFMPEG</div>
+      </div>
+    );
+  }
+
+  return null;
+}
+
+function RepoThumbnail({ repo, index, compact = false }) {
+  const language = (repo.language || 'code').toLowerCase();
+  const kind = language.includes('python') ? 'python'
+    : language.includes('javascript') || language.includes('typescript') ? 'js'
+    : language.includes('kotlin') || language.includes('java') ? 'mobile'
+    : language.includes('html') || language.includes('css') ? 'web'
+    : language.includes('shell') || language.includes('bash') ? 'terminal'
+    : 'code';
+
+  return (
+    <div className={`repo-thumb custom-repo-thumb kind-${kind} ${compact ? 'is-compact' : ''}`}>
+      <span>{String(index + 1).padStart(2, '0')}</span>
+      <strong>{(repo.language || 'CODE').slice(0, compact ? 8 : 7)}</strong>
+      <div className="repo-thumb-art" aria-hidden="true">
+        <i /><i /><i />
+      </div>
+      <small>{repo.name.slice(0, 18)}</small>
+    </div>
+  );
+}
+
 function App() {
   const [theme, setTheme] = useState(getStoredTheme);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -267,7 +352,7 @@ function App() {
       <header className="site-header">
         <div className="header-inner">
           <a className="brand" href="#home" onClick={() => setMenuOpen(false)}>
-            {github.profile?.avatar_url ? <img className="brand-mark" src={github.profile.avatar_url} alt="" /> : <span className="brand-mark">JPG</span>}
+            <ProfileAvatar src={github.profile?.avatar_url} className="brand-mark" />
             <span className="brand-copy"><strong>Jishnu P G</strong><small>AI · Full Stack · Android</small></span>
           </a>
 
@@ -297,7 +382,7 @@ function App() {
           <div className="hero-grid-glow" aria-hidden="true" />
           <div className="container hero-layout">
             <div className="hero-copy-block">
-              <div className="eyebrow-row" data-reveal><span className="status-dot" /> Open to building interesting things · Kerala, India</div>
+              <div className="eyebrow-row" data-reveal><span className="status-dot" /> Open to select opportunities · Kerala, India</div>
               <p className="eyebrow" data-reveal>BCA · 2026 · AI / FULL STACK / ANDROID</p>
               <h1 data-reveal>Building software that is <em>useful, intelligent,</em> and built to last.</h1>
               <p className="hero-description" data-reveal>
@@ -317,7 +402,7 @@ function App() {
             <div className="hero-console" data-reveal>
               <div className="console-top"><span><i /> LIVE BUILD</span><span>2026.10</span></div>
               <div className="console-profile">
-                {github.profile?.avatar_url ? <img src={github.profile.avatar_url} alt="Jishnu P G" /> : <div className="avatar-placeholder">JPG</div>}
+                <ProfileAvatar src={github.profile?.avatar_url} className="console-avatar" />
                 <div><span className="console-kicker">CURRENT FOCUS</span><strong>AI systems + product engineering</strong><small>From model logic to the interface around it.</small></div>
               </div>
               <div className="console-grid">
@@ -344,13 +429,17 @@ function App() {
                 <span className="visual-label">SMARTWATT / HYBRID INFERENCE</span>
                 <div className="energy-orbit"><span /><span /><span /></div>
                 <div className="energy-card">
-                  <div><span>MODEL OUTPUT</span><span>LIVE</span></div>
-                  <strong>94.5<small>%</small></strong>
+                  <div className="energy-card-head"><span>MODEL OUTPUT</span><span className="live-state"><i /> LIVE</span></div>
+                  <div className="energy-value"><strong>94.5</strong><small>%</small></div>
                   <p>reported peak accuracy</p>
                   <div className="metric-line"><i /></div>
                   <footer><span>PHYSICS + NEURAL</span><span>v1.0</span></footer>
                 </div>
-                <span className="visual-tag tag-a">PHYSICS</span><span className="visual-tag tag-b">NEURAL</span><span className="visual-tag tag-c">KSEB</span>
+                <div className="energy-tags">
+                  <span className="visual-tag">PHYSICS</span>
+                  <span className="visual-tag neural-tag">NEURAL</span>
+                  <span className="visual-tag">KSEB</span>
+                </div>
               </div>
               <div className="featured-copy">
                 <div className="project-topline"><span>01</span><span>FEATURED</span></div>
@@ -368,9 +457,7 @@ function App() {
                 <article className={'project-card ' + project.accent} key={project.name} data-reveal>
                   <div className="card-visual">
                     <span>{project.number} / {project.eyebrow}</span>
-                    {project.accent === 'network' && <div className="network-visual"><i /><i /><i /><i /></div>}
-                    {project.accent === 'terminal' && <div className="terminal-visual"><Terminal size={30} /><span>opencode / terminal / sync</span></div>}
-                    {project.accent === 'mobile' && <div className="mobile-visual"><Smartphone size={34} /><span>ANDROID / MEDIA</span></div>}
+                    <ProjectArtwork accent={project.accent} />
                   </div>
                   <div className="project-card-body"><span className="card-eyebrow">{project.eyebrow}</span><h3>{project.name}</h3><p>{project.description}</p><div className="tag-list">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div><a className="inline-link" href={project.repo} target="_blank" rel="noreferrer">View on GitHub <ArrowUpRight size={14} /></a></div>
                 </article>
@@ -388,7 +475,7 @@ function App() {
 
             <div className="github-profile-card" data-reveal>
               <div className="github-profile-main">
-                {github.profile?.avatar_url ? <img className="github-avatar" src={github.profile.avatar_url} alt="Jishnu P G" /> : <div className="github-avatar avatar-placeholder">JPG</div>}
+                <ProfileAvatar src={github.profile?.avatar_url} className="github-avatar" />
                 <div><span className="github-handle">@JishnuPG-tech</span><h3>{github.profile?.name || 'Jishnu P G'}</h3><p>{github.profile?.bio || 'AI-focused developer building software, infrastructure and Android experiences.'}</p><div className="profile-meta">{github.profile?.location && <span><MapPin size={13} /> {github.profile.location}</span>} {github.profile?.created_at && <span><CalendarDays size={13} /> Joined {new Date(github.profile.created_at).getFullYear()}</span>}</div></div>
               </div>
               <div className="profile-actions"><a href="https://github.com/JishnuPG-tech" target="_blank" rel="noreferrer"><Github size={15} /> Follow on GitHub</a><span><Users size={14} /> {github.profile?.followers ?? '—'} followers</span></div>
@@ -411,12 +498,12 @@ function App() {
             </div>
 
             <div className="github-lower-grid">
-              <div className="github-panel" data-reveal><div className="panel-heading"><div><span>FEATURED REPOSITORIES</span><strong>What I’m building</strong></div><Layers3 size={17} /></div><div className="repo-list">{githubStats.featured.map((repo, index) => <a className="repo-item" href={repo.html_url} target="_blank" rel="noreferrer" key={repo.id}><div className="repo-thumb"><img className="repo-thumb-image" src={'https://opengraph.githubassets.com/1/' + GITHUB_USERNAME + '/' + repo.name} alt="" loading="lazy" onError={(event) => { event.currentTarget.style.display = 'none'; }} /><span>{String(index + 1).padStart(2, '0')}</span><strong>{(repo.language || 'CODE').slice(0, 7)}</strong><i /></div><div className="repo-copy"><strong>{repo.name}</strong><p>{repo.description || 'Open-source project by Jishnu P G.'}</p></div><div className="repo-metrics"><span><Star size={12} /> {repo.stargazers_count}</span><span><GitFork size={12} /> {repo.forks_count}</span></div></a>)}{github.loading && <div className="loading-copy">Loading repositories…</div>}{!github.loading && !githubStats.featured.length && <div className="loading-copy">No public repositories found.</div>}</div></div>
+              <div className="github-panel" data-reveal><div className="panel-heading"><div><span>FEATURED REPOSITORIES</span><strong>What I’m building</strong></div><Layers3 size={17} /></div><div className="repo-list">{githubStats.featured.map((repo, index) => <a className="repo-item" href={repo.html_url} target="_blank" rel="noreferrer" key={repo.id}><RepoThumbnail repo={repo} index={index} /><div className="repo-copy"><strong>{repo.name}</strong><p>{repo.description || 'Open-source project by Jishnu P G.'}</p></div><div className="repo-metrics"><span><Star size={12} /> {repo.stargazers_count}</span><span><GitFork size={12} /> {repo.forks_count}</span></div></a>)}{github.loading && <div className="loading-copy">Loading repositories…</div>}{!github.loading && !githubStats.featured.length && <div className="loading-copy">No public repositories found.</div>}</div></div>
 
               <div className="github-panel" data-reveal><div className="panel-heading"><div><span>LANGUAGE MIX</span><strong>Across public repositories</strong></div><Code2 size={17} /></div><div className="language-list">{githubStats.languageList.map(([language, count]) => <div className="language-row" key={language}><div><span>{language}</span><small>{count} repos</small></div><div className="language-bar"><i style={{ width: Math.max(8, Math.round((count / Math.max(1, githubStats.languageList[0]?.[1] || 1)) * 100)) + '%' }} /></div></div>)}{github.loading && <div className="loading-copy">Loading language data…</div>}</div></div>
             </div>
 
-            <div className="github-recent" data-reveal><div className="panel-heading"><div><span>RECENTLY UPDATED</span><strong>Latest repositories</strong></div><GitCommitHorizontal size={17} /></div><div className="recent-grid">{githubStats.recent.map((repo, index) => <a className="github-recent-card" href={repo.html_url} target="_blank" rel="noreferrer" key={repo.id}><div className="recent-thumb"><img className="repo-thumb-image" src={'https://opengraph.githubassets.com/1/' + GITHUB_USERNAME + '/' + repo.name} alt="" loading="lazy" onError={(event) => { event.currentTarget.style.display = 'none'; }} /><span>{String(index + 1).padStart(2, '0')}</span><strong>{(repo.language || 'CODE').slice(0, 8)}</strong><i /></div><span>{repo.language || 'Repository'}</span><strong>{repo.name}</strong><small>{repo.description || 'View repository'}</small><em>Updated {new Date(repo.pushed_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })} <ArrowUpRight size={13} /></em></a>)}</div></div>
+            <div className="github-recent" data-reveal><div className="panel-heading"><div><span>RECENTLY UPDATED</span><strong>Latest repositories</strong></div><GitCommitHorizontal size={17} /></div><div className="recent-grid">{githubStats.recent.map((repo, index) => <a className="github-recent-card" href={repo.html_url} target="_blank" rel="noreferrer" key={repo.id}><RepoThumbnail repo={repo} index={index} compact /><span>{repo.language || 'Repository'}</span><strong>{repo.name}</strong><small>{repo.description || 'View repository'}</small><em>Updated {new Date(repo.pushed_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })} <ArrowUpRight size={13} /></em></a>)}</div></div>
           </div>
         </section>
 
