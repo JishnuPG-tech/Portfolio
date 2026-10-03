@@ -17,7 +17,7 @@ const projects = [
     metrics: ['94.5% reported accuracy', '<20ms target latency', 'Hybrid inference'],
     stack: ['Python', 'TensorFlow', 'FastAPI', 'React'],
     href: '/smartwatt',
-    repo: 'https://github.com/JishnuPG-tech',
+    repo: 'https://github.com/JishnuPG-tech/SmartWatt',
   },
   {
     name: 'Hermes-x',
