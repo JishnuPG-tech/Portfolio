@@ -227,16 +227,14 @@ function App() {
     return () => reveal.disconnect();
   }, []);
 
-  const safeContributions = Array.isArray(github.contributions) ? github.contributions : [];
-  const safeRepos = Array.isArray(github.repos) ? github.repos : [];
-
   const contributionWeeks = useMemo(
-    () => buildContributionWeeks(safeContributions),
-    [safeContributions]
+    () => buildContributionWeeks(Array.isArray(github.contributions) ? github.contributions : []),
+    [github.contributions]
   );
 
   const githubStats = useMemo(() => {
-    const repos = safeRepos;
+    const repos = Array.isArray(github.repos) ? github.repos : [];
+    const contributions = Array.isArray(github.contributions) ? github.contributions : [];
     const totalStars = repos.reduce((sum, repo) => sum + (repo.stargazers_count || 0), 0);
     const totalForks = repos.reduce((sum, repo) => sum + (repo.forks_count || 0), 0);
     const languages = {};
@@ -247,9 +245,9 @@ function App() {
     const recent = [...repos].sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at)).slice(0, 6);
     const strongest = [...repos].sort((a, b) => repoScore(b) - repoScore(a)).slice(0, 10);
     const featured = shuffleItems(strongest).slice(0, 4);
-    const contributionTotal = safeContributions.reduce((sum, item) => sum + (Number(item.count) || 0), 0);
+    const contributionTotal = contributions.reduce((sum, item) => sum + (Number(item.count) || 0), 0);
     return { totalStars, totalForks, languageList, recent, featured, contributionTotal };
-  }, [safeRepos, safeContributions]);
+  }, [github.repos, github.contributions]);
 
   const copyEmail = async () => {
     try {
