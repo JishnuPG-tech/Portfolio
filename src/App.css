@@ -564,3 +564,39 @@ button,input,textarea,select{font:inherit}button,a{-webkit-tap-highlight-color:t
 @media(max-width:760px){
   .repo-pixel-card{width:64px!important;min-width:64px!important;height:54px!important;border-radius:11px!important}
 }
+
+/* Minimal repository thumbnail treatment */
+.repo-thumb-empty{
+  position:relative;
+  flex:0 0 72px;
+  width:72px;
+  height:58px;
+  border-radius:12px;
+  border:1px solid #252925;
+  background:#111311;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.012), inset 0 0 28px rgba(0,0,0,.18);
+  overflow:hidden;
+}
+.repo-thumb-empty:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at 50% 30%,rgba(225,132,98,.025),transparent 62%);
+}
+.repo-thumb-empty.is-compact{
+  width:100%;
+  height:92px;
+  flex-basis:auto;
+  border:0;
+  border-bottom:1px solid #242824;
+  border-radius:0;
+  background:#111311;
+}
+@media(max-width:760px){
+  .repo-thumb-empty{
+    flex-basis:64px;
+    width:64px;
+    height:54px;
+    border-radius:11px;
+  }
+}
