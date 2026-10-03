@@ -376,8 +376,9 @@ button,input,textarea,select{font:inherit}button,a{-webkit-tap-highlight-color:t
 .brand-tech-text{
   position:relative;
   display:block;
-  width:116px;
-  height:30px;
+  width:70px;
+  height:18px;
+  flex:0 0 70px;
   overflow:hidden;
   border:0;
   background:transparent;
@@ -386,23 +387,22 @@ button,input,textarea,select{font:inherit}button,a{-webkit-tap-highlight-color:t
   position:absolute;
   inset:0;
 }
-.brand-tech-text .tech-text-canvas{
-  width:100%;
-  height:100%;
-}
+.brand-tech-text .tech-text-canvas,
 .brand-tech-text canvas{
   width:100%!important;
   height:100%!important;
 }
 @media(max-width:760px){
   .brand-tech-text{
-    width:108px;
-    height:28px;
+    width:70px;
+    height:18px;
+    flex-basis:70px;
   }
 }
 @media(max-width:390px){
   .brand-tech-text{
-    width:96px;
-    height:27px;
+    width:68px;
+    height:18px;
+    flex-basis:68px;
   }
 }
