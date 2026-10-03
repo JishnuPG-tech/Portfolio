@@ -389,15 +389,16 @@ function App() {
             <span className="brand-copy">
               <span className="brand-tech-text" aria-label="Jishnu P G">
                 <TechText
-                  text="JISHNU P G"
-                  fontWeight={600}
-                  fontSize={34}
+                  text="Jishnu P G"
+                  fontFamily="DM Sans, system-ui, sans-serif"
+                  fontWeight={700}
+                  fontSize={13}
                   reveal="letter"
-                  dashLength={3}
+                  dashLength={2}
                   dashGap={2}
-                  specks={5}
-                  color="#F5F2EA"
-                  accentColor="#E9825F"
+                  specks={2}
+                  color="#F3F0E9"
+                  accentColor="#E18462"
                   selection={false}
                   labels={false}
                   draggable={false}
