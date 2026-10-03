@@ -35,7 +35,7 @@ const CaseStudy = () => {
             <span>Return to Portfolio</span>
           </Link>
           <a
-            href="https://github.com/JishnuPG-tech"
+            href="https://github.com/JishnuPG-tech/SmartWatt"
             target="_blank"
             rel="noopener noreferrer"
             className="cs-git-pill"
@@ -294,7 +294,7 @@ const CaseStudy = () => {
             </p>
             <div className="cs-cta-actions">
               <a
-                href="https://github.com/JishnuPG-tech"
+                href="https://github.com/JishnuPG-tech/SmartWatt"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-primary"
