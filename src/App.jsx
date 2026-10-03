@@ -8,7 +8,6 @@ import {
 } from 'lucide-react';
 import './App.css';
 import TechText from './components/TechText';
-import PixelCard from './components/PixelCard';
 import FlipCard from './components/FlipCard';
 import CaseStudy from './pages/CaseStudy';
 
@@ -272,53 +271,8 @@ function ProjectArtwork({ accent }) {
   return null;
 }
 
-function RepoThumbnail({ repo, index, compact = false }) {
-  const language = (repo.language || 'code').toLowerCase();
-  const repoName = repo.name.toLowerCase();
-  const kind = repoName.includes('smartwatt') ? 'smartwatt'
-    : repoName.includes('hermes') || repoName.includes('hermex') ? 'hermes'
-    : repoName.includes('omniroute') ? 'network'
-    : repoName.includes('wedora') ? 'wedora'
-    : language.includes('python') ? 'python'
-    : language.includes('javascript') || language.includes('typescript') ? 'js'
-    : language.includes('kotlin') || language.includes('java') ? 'mobile'
-    : language.includes('html') || language.includes('css') ? 'web'
-    : language.includes('shell') || language.includes('bash') ? 'terminal'
-    : 'code';
-
-  const palette = {
-    smartwatt: '#E18462,#F3F0E9,#8BAD91',
-    hermes: '#E18462,#C6A7FF,#F3F0E9',
-    network: '#E18462,#8BAD91,#F3F0E9',
-    wedora: '#E7B6A4,#E18462,#F3F0E9',
-    python: '#E18462,#8BAD91,#F3F0E9',
-    js: '#E18462,#F3F0E9,#B9A77E',
-    mobile: '#E18462,#A9C8B0,#F3F0E9',
-    web: '#E18462,#F3F0E9,#8E9AAA',
-    terminal: '#8BAD91,#E18462,#F3F0E9',
-    code: '#E18462,#F3F0E9,#777F79'
-  };
-
-  return (
-    <PixelCard
-      className={`repo-pixel-card ${compact ? 'is-compact' : ''} kind-${kind}`}
-      gap={compact ? 6 : 7}
-      speed={55}
-      colors={palette[kind] || palette.code}
-      noFocus
-    >
-      <div className="repo-thumb-content">
-        <span className="repo-thumb-index">{String(index + 1).padStart(2, '0')}</span>
-        <div className={`repo-graphic repo-graphic-${kind}`} aria-hidden="true">
-          <i /><i /><i /><i />
-        </div>
-        <div className="repo-thumb-copy">
-          <strong>{repo.name}</strong>
-          <small>{repo.language || 'CODE'} · OPEN SOURCE</small>
-        </div>
-      </div>
-    </PixelCard>
-  );
+function RepoThumbnail({ compact = false }) {
+  return <div className={`repo-thumb-empty ${compact ? 'is-compact' : ''}`} aria-hidden="true" />;
 }
 
 function App() {
@@ -631,12 +585,12 @@ function App() {
             </div>
 
             <div className="github-lower-grid">
-              <div className="github-panel" data-reveal><div className="panel-heading"><div><span>FEATURED REPOSITORIES</span><strong>What I’m building</strong></div><Layers3 size={17} /></div><div className="repo-list">{githubStats.featured.map((repo, index) => <a className="repo-item" href={repo.html_url} target="_blank" rel="noreferrer" key={repo.id}><RepoThumbnail repo={repo} index={index} /><div className="repo-copy"><strong>{repo.name}</strong><p>{repo.description || 'Open-source project by Jishnu P G.'}</p></div><div className="repo-metrics"><span><Star size={12} /> {repo.stargazers_count}</span><span><GitFork size={12} /> {repo.forks_count}</span></div></a>)}{github.loading && <div className="loading-copy">Loading repositories…</div>}{!github.loading && !githubStats.featured.length && <div className="loading-copy">No public repositories found.</div>}</div></div>
+              <div className="github-panel" data-reveal><div className="panel-heading"><div><span>FEATURED REPOSITORIES</span><strong>What I’m building</strong></div><Layers3 size={17} /></div><div className="repo-list">{githubStats.featured.map((repo, index) => <a className="repo-item" href={repo.html_url} target="_blank" rel="noreferrer" key={repo.id}><RepoThumbnail /><div className="repo-copy"><strong>{repo.name}</strong><p>{repo.description || 'Open-source project by Jishnu P G.'}</p></div><div className="repo-metrics"><span><Star size={12} /> {repo.stargazers_count}</span><span><GitFork size={12} /> {repo.forks_count}</span></div></a>)}{github.loading && <div className="loading-copy">Loading repositories…</div>}{!github.loading && !githubStats.featured.length && <div className="loading-copy">No public repositories found.</div>}</div></div>
 
               <div className="github-panel" data-reveal><div className="panel-heading"><div><span>LANGUAGE MIX</span><strong>Across public repositories</strong></div><Code2 size={17} /></div><div className="language-list">{githubStats.languageList.map(([language, count]) => <div className="language-row" key={language}><div><span>{language}</span><small>{count} repos</small></div><div className="language-bar"><i style={{ width: Math.max(8, Math.round((count / Math.max(1, githubStats.languageList[0]?.[1] || 1)) * 100)) + '%' }} /></div></div>)}{github.loading && <div className="loading-copy">Loading language data…</div>}</div></div>
             </div>
 
-            <div className="github-recent" data-reveal><div className="panel-heading"><div><span>RECENTLY UPDATED</span><strong>Latest repositories</strong></div><GitCommitHorizontal size={17} /></div><div className="recent-grid">{githubStats.recent.map((repo, index) => <a className="github-recent-card" href={repo.html_url} target="_blank" rel="noreferrer" key={repo.id}><RepoThumbnail repo={repo} index={index} compact /><span>{repo.language || 'Repository'}</span><strong>{repo.name}</strong><small>{repo.description || 'View repository'}</small><em>Updated {new Date(repo.pushed_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })} <ArrowUpRight size={13} /></em></a>)}</div></div>
+            <div className="github-recent" data-reveal><div className="panel-heading"><div><span>RECENTLY UPDATED</span><strong>Latest repositories</strong></div><GitCommitHorizontal size={17} /></div><div className="recent-grid">{githubStats.recent.map((repo, index) => <a className="github-recent-card" href={repo.html_url} target="_blank" rel="noreferrer" key={repo.id}><RepoThumbnail compact /><span>{repo.language || 'Repository'}</span><strong>{repo.name}</strong><small>{repo.description || 'View repository'}</small><em>Updated {new Date(repo.pushed_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })} <ArrowUpRight size={13} /></em></a>)}</div></div>
           </div>
         </section>
 
