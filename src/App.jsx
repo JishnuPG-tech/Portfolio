@@ -7,6 +7,7 @@ import {
   Smartphone, Sparkles, Star, Sun, Users, X
 } from 'lucide-react';
 import './App.css';
+import TechText from './components/TechText';
 import CaseStudy from './pages/CaseStudy';
 import TechText from './components/TechText/TechText';
 
