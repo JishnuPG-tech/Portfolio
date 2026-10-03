@@ -113,10 +113,15 @@ async function fetchGithubData() {
     throw new Error('GitHub data request failed');
   }
 
+  const profile = await profileResponse.json();
+  const repos = await reposResponse.json();
+  const contributionsPayload = await contributionsResponse.json();
+
   const data = {
-    profile: await profileResponse.json(),
-    repos: await reposResponse.json(),
-    contributions: await contributionsResponse.json()
+    profile,
+    repos: Array.isArray(repos) ? repos : [],
+    contributions: Array.isArray(contributionsPayload) ? contributionsPayload : (contributionsPayload?.contributions || []),
+    total: contributionsPayload?.total || {}
   };
   writeCache('jishnu-github-data-v2', data);
   return data;
