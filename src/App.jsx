@@ -101,7 +101,16 @@ function writeCache(key, data) {
 
 async function fetchGithubData() {
   const cached = readCache('jishnu-github-data-v2', 15 * 60 * 1000);
-  if (cached) return cached;
+  if (cached) {
+    return {
+      ...cached,
+      repos: Array.isArray(cached.repos) ? cached.repos : [],
+      contributions: Array.isArray(cached.contributions)
+        ? cached.contributions
+        : (Array.isArray(cached.contributions?.contributions) ? cached.contributions.contributions : []),
+      total: cached.total || {}
+    };
+  }
 
   const [profileResponse, reposResponse, contributionsResponse] = await Promise.all([
     fetch(GITHUB_API + '/users/' + GITHUB_USERNAME),
@@ -201,13 +210,16 @@ function App() {
     return () => reveal.disconnect();
   }, []);
 
+  const safeContributions = Array.isArray(github.contributions) ? github.contributions : [];
+  const safeRepos = Array.isArray(github.repos) ? github.repos : [];
+
   const contributionWeeks = useMemo(
-    () => buildContributionWeeks(github.contributions),
-    [github.contributions]
+    () => buildContributionWeeks(safeContributions),
+    [safeContributions]
   );
 
   const githubStats = useMemo(() => {
-    const repos = github.repos || [];
+    const repos = safeRepos;
     const totalStars = repos.reduce((sum, repo) => sum + (repo.stargazers_count || 0), 0);
     const totalForks = repos.reduce((sum, repo) => sum + (repo.forks_count || 0), 0);
     const languages = {};
@@ -221,9 +233,9 @@ function App() {
       const scoreB = (b.stargazers_count || 0) * 10 + (b.forks_count || 0) * 3;
       return scoreB - scoreA;
     }).slice(0, 4);
-    const contributionTotal = github.contributions?.reduce((sum, item) => sum + item.count, 0) || 0;
+    const contributionTotal = safeContributions.reduce((sum, item) => sum + (Number(item.count) || 0), 0);
     return { totalStars, totalForks, languageList, recent, featured, contributionTotal };
-  }, [github.repos, github.contributions]);
+  }, [safeRepos, safeContributions]);
 
   const copyEmail = async () => {
     try {
