@@ -163,12 +163,29 @@ function buildContributionWeeks(contributions) {
   return weeks;
 }
 
+function shuffleItems(items) {
+  const copy = [...items];
+  for (let i = copy.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+function repoScore(repo) {
+  return (repo.stargazers_count || 0) * 12
+    + (repo.forks_count || 0) * 5
+    + (repo.watchers_count || 0)
+    + (repo.description ? 2 : 0);
+}
+
 function App() {
   const [theme, setTheme] = useState(getStoredTheme);
   const [menuOpen, setMenuOpen] = useState(false);
   const [active, setActive] = useState('home');
   const [copied, setCopied] = useState(false);
   const [github, setGithub] = useState(emptyGithub);
+  const [projectOrder] = useState(() => shuffleItems(projects.slice(1)));
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
@@ -228,11 +245,8 @@ function App() {
     });
     const languageList = Object.entries(languages).sort((a, b) => b[1] - a[1]).slice(0, 6);
     const recent = [...repos].sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at)).slice(0, 6);
-    const featured = [...repos].sort((a, b) => {
-      const scoreA = (a.stargazers_count || 0) * 10 + (a.forks_count || 0) * 3;
-      const scoreB = (b.stargazers_count || 0) * 10 + (b.forks_count || 0) * 3;
-      return scoreB - scoreA;
-    }).slice(0, 4);
+    const strongest = [...repos].sort((a, b) => repoScore(b) - repoScore(a)).slice(0, 10);
+    const featured = shuffleItems(strongest).slice(0, 4);
     const contributionTotal = safeContributions.reduce((sum, item) => sum + (Number(item.count) || 0), 0);
     return { totalStars, totalForks, languageList, recent, featured, contributionTotal };
   }, [safeRepos, safeContributions]);
@@ -255,7 +269,7 @@ function App() {
       <header className="site-header">
         <div className="header-inner">
           <a className="brand" href="#home" onClick={() => setMenuOpen(false)}>
-            <span className="brand-mark">JPG</span>
+            {github.profile?.avatar_url ? <img className="brand-mark" src={github.profile.avatar_url} alt="" /> : <span className="brand-mark">JPG</span>}
             <span className="brand-copy"><strong>Jishnu P G</strong><small>AI · Full Stack · Android</small></span>
           </a>
 
@@ -352,7 +366,7 @@ function App() {
             </article>
 
             <div className="project-grid">
-              {projects.slice(1).map(project => (
+              {projectOrder.map(project => (
                 <article className={'project-card ' + project.accent} key={project.name} data-reveal>
                   <div className="card-visual">
                     <span>{project.number} / {project.eyebrow}</span>
@@ -399,12 +413,12 @@ function App() {
             </div>
 
             <div className="github-lower-grid">
-              <div className="github-panel" data-reveal><div className="panel-heading"><div><span>FEATURED REPOSITORIES</span><strong>What I’m building</strong></div><Layers3 size={17} /></div><div className="repo-list">{githubStats.featured.map(repo => <a className="repo-item" href={repo.html_url} target="_blank" rel="noreferrer" key={repo.id}><div><strong>{repo.name}</strong><p>{repo.description || 'Open-source project by Jishnu P G.'}</p></div><div className="repo-metrics"><span><Star size={12} /> {repo.stargazers_count}</span><span><GitFork size={12} /> {repo.forks_count}</span></div></a>)}{github.loading && <div className="loading-copy">Loading repositories…</div>}{!github.loading && !githubStats.featured.length && <div className="loading-copy">No public repositories found.</div>}</div></div>
+              <div className="github-panel" data-reveal><div className="panel-heading"><div><span>FEATURED REPOSITORIES</span><strong>What I’m building</strong></div><Layers3 size={17} /></div><div className="repo-list">{githubStats.featured.map((repo, index) => <a className="repo-item" href={repo.html_url} target="_blank" rel="noreferrer" key={repo.id}><div className="repo-thumb"><span>{String(index + 1).padStart(2, '0')}</span><strong>{(repo.language || 'CODE').slice(0, 7)}</strong><i /></div><div className="repo-copy"><strong>{repo.name}</strong><p>{repo.description || 'Open-source project by Jishnu P G.'}</p></div><div className="repo-metrics"><span><Star size={12} /> {repo.stargazers_count}</span><span><GitFork size={12} /> {repo.forks_count}</span></div></a>)}{github.loading && <div className="loading-copy">Loading repositories…</div>}{!github.loading && !githubStats.featured.length && <div className="loading-copy">No public repositories found.</div>}</div></div>
 
               <div className="github-panel" data-reveal><div className="panel-heading"><div><span>LANGUAGE MIX</span><strong>Across public repositories</strong></div><Code2 size={17} /></div><div className="language-list">{githubStats.languageList.map(([language, count]) => <div className="language-row" key={language}><div><span>{language}</span><small>{count} repos</small></div><div className="language-bar"><i style={{ width: Math.max(8, Math.round((count / Math.max(1, githubStats.languageList[0]?.[1] || 1)) * 100)) + '%' }} /></div></div>)}{github.loading && <div className="loading-copy">Loading language data…</div>}</div></div>
             </div>
 
-            <div className="github-recent" data-reveal><div className="panel-heading"><div><span>RECENTLY UPDATED</span><strong>Latest repositories</strong></div><GitCommitHorizontal size={17} /></div><div className="recent-grid">{githubStats.recent.map(repo => <a href={repo.html_url} target="_blank" rel="noreferrer" key={repo.id}><span>{repo.language || 'Repository'}</span><strong>{repo.name}</strong><small>{repo.description || 'View repository'}</small><em>Updated {new Date(repo.pushed_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })} <ArrowUpRight size={13} /></em></a>)}</div></div>
+            <div className="github-recent" data-reveal><div className="panel-heading"><div><span>RECENTLY UPDATED</span><strong>Latest repositories</strong></div><GitCommitHorizontal size={17} /></div><div className="recent-grid">{githubStats.recent.map((repo, index) => <a className="github-recent-card" href={repo.html_url} target="_blank" rel="noreferrer" key={repo.id}><div className="recent-thumb"><span>{String(index + 1).padStart(2, '0')}</span><strong>{(repo.language || 'CODE').slice(0, 8)}</strong><i /></div><span>{repo.language || 'Repository'}</span><strong>{repo.name}</strong><small>{repo.description || 'View repository'}</small><em>Updated {new Date(repo.pushed_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })} <ArrowUpRight size={13} /></em></a>)}</div></div>
           </div>
         </section>
 
