@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import './App.css';
 import TechText from './components/TechText';
+import PixelCard from './components/PixelCard';
 import FlipCard from './components/FlipCard';
 import CaseStudy from './pages/CaseStudy';
 
@@ -285,15 +286,38 @@ function RepoThumbnail({ repo, index, compact = false }) {
     : language.includes('shell') || language.includes('bash') ? 'terminal'
     : 'code';
 
+  const palette = {
+    smartwatt: '#E18462,#F3F0E9,#8BAD91',
+    hermes: '#E18462,#C6A7FF,#F3F0E9',
+    network: '#E18462,#8BAD91,#F3F0E9',
+    wedora: '#E7B6A4,#E18462,#F3F0E9',
+    python: '#E18462,#8BAD91,#F3F0E9',
+    js: '#E18462,#F3F0E9,#B9A77E',
+    mobile: '#E18462,#A9C8B0,#F3F0E9',
+    web: '#E18462,#F3F0E9,#8E9AAA',
+    terminal: '#8BAD91,#E18462,#F3F0E9',
+    code: '#E18462,#F3F0E9,#777F79'
+  };
+
   return (
-    <div className={`repo-thumb custom-repo-thumb kind-${kind} ${compact ? 'is-compact' : ''}`}>
-      <span>{String(index + 1).padStart(2, '0')}</span>
-      <strong>{(repo.language || 'CODE').slice(0, compact ? 8 : 7)}</strong>
-      <div className="repo-thumb-art" aria-hidden="true">
-        <i /><i /><i />
+    <PixelCard
+      className={`repo-pixel-card ${compact ? 'is-compact' : ''} kind-${kind}`}
+      gap={compact ? 6 : 7}
+      speed={55}
+      colors={palette[kind] || palette.code}
+      noFocus
+    >
+      <div className="repo-thumb-content">
+        <span className="repo-thumb-index">{String(index + 1).padStart(2, '0')}</span>
+        <div className={`repo-graphic repo-graphic-${kind}`} aria-hidden="true">
+          <i /><i /><i /><i />
+        </div>
+        <div className="repo-thumb-copy">
+          <strong>{repo.name}</strong>
+          <small>{repo.language || 'CODE'} · OPEN SOURCE</small>
+        </div>
       </div>
-      <small>{repo.name.slice(0, 18)}</small>
-    </div>
+    </PixelCard>
   );
 }
 
@@ -361,8 +385,14 @@ function App() {
     });
     const languageList = Object.entries(languages).sort((a, b) => b[1] - a[1]).slice(0, 6);
     const recent = [...repos].sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at)).slice(0, 6);
-    const strongest = [...repos].sort((a, b) => repoScore(b) - repoScore(a)).slice(0, 10);
-    const featured = shuffleItems(strongest).slice(0, 4);
+    const strongest = [...repos].sort((a, b) => repoScore(b) - repoScore(a)).slice(0, 12);
+    const priorityOrder = ['smartwatt', 'hermes', 'omniroute', 'wedora-h'];
+    const priority = priorityOrder
+      .map(name => repos.find(repo => repo.name.toLowerCase() === name || repo.name.toLowerCase().includes(name)))
+      .filter(Boolean);
+    const priorityNames = new Set(priority.map(repo => repo.id));
+    const remaining = shuffleItems(strongest.filter(repo => !priorityNames.has(repo.id)));
+    const featured = [...priority, ...remaining].slice(0, 4);
     const contributionTotal = contributions.reduce((sum, item) => sum + (Number(item.count) || 0), 0);
     return { totalStars, totalForks, languageList, recent, featured, contributionTotal };
   }, [github.repos, github.contributions]);
