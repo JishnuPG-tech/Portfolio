@@ -366,43 +366,36 @@ button,input,textarea,select{font:inherit}button,a{-webkit-tap-highlight-color:t
 .project-flip{display:block;width:100%!important;height:350px!important;max-width:none!important;margin:0}.project-flip .flip-card__face{background:#101310}.flip-project-face{position:relative;width:100%;height:100%;overflow:hidden}.flip-project-index{position:absolute;z-index:5;top:21px;left:22px;color:rgba(245,242,234,.54);font:8px var(--mono);letter-spacing:.1em;text-transform:uppercase}.flip-project-front .project-art{opacity:.96}.flip-project-overlay{position:absolute;z-index:5;left:22px;right:22px;bottom:20px;display:flex;flex-direction:column;gap:5px;padding-top:55px;background:linear-gradient(transparent,rgba(8,10,9,.94) 55%)}.flip-project-overlay strong{color:var(--cream);font:500 28px var(--serif)}.flip-project-overlay span{color:var(--muted);font:8px var(--mono);letter-spacing:.08em}.flip-project-back{display:flex;flex-direction:column;justify-content:flex-end;padding:22px;background:radial-gradient(circle at 82% 18%,rgba(225,132,98,.1),transparent 34%),#101310}.flip-project-back-copy{display:flex;flex-direction:column;align-items:flex-start}.flip-project-back h3{margin:8px 0 9px;color:var(--cream);font:500 34px/1.02 var(--serif)}.flip-project-back p{margin:0;color:var(--muted);font-size:11px;line-height:1.7}.flip-project-back .tag-list{margin-top:17px}.flip-project-action{display:inline-flex;align-items:center;gap:6px;margin-top:18px;color:var(--cream);font:600 11px var(--sans)}.project-card-link{display:inline-flex;align-items:center;gap:7px;margin-top:13px;padding-left:3px;color:var(--muted);font:600 11px var(--sans);text-decoration:none;transition:color .2s ease}.project-card-link:hover{color:var(--cream)}
 @media(max-width:760px){.project-flip{height:330px!important}.flip-project-back{padding:21px}.flip-project-back h3{font-size:31px}.flip-project-overlay strong{font-size:26px}}
 @media(max-width:390px){.project-flip{height:310px!important}.flip-project-index{top:18px;left:19px}.flip-project-overlay{left:19px;right:19px;bottom:18px}.flip-project-back{padding:19px}.flip-project-back p{font-size:10.5px}}
-/* Compact TechText brand */
-.brand-copy{
-  min-width:0;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-}
-.brand-tech-text{
-  position:relative;
+
+/* TechText is used only for the GitHub profile name */
+.brand-name{
   display:block;
-  width:70px;
-  height:18px;
-  flex:0 0 70px;
+  color:var(--text);
+  font-size:13px;
+  font-weight:700;
+  line-height:1.15;
+}
+.github-tech-name{
+  display:block;
+  width:210px;
+  height:42px;
+  margin:3px 0;
   overflow:hidden;
-  border:0;
-  background:transparent;
 }
-.brand-tech-text .tech-text{
-  position:absolute;
-  inset:0;
-}
-.brand-tech-text .tech-text-canvas,
-.brand-tech-text canvas{
+.github-tech-name .tech-text,
+.github-tech-name .tech-text-canvas{
   width:100%!important;
   height:100%!important;
 }
 @media(max-width:760px){
-  .brand-tech-text{
-    width:70px;
-    height:18px;
-    flex-basis:70px;
+  .github-tech-name{
+    width:190px;
+    height:42px;
   }
 }
 @media(max-width:390px){
-  .brand-tech-text{
-    width:68px;
-    height:18px;
-    flex-basis:68px;
+  .github-tech-name{
+    width:180px;
+    height:40px;
   }
 }
