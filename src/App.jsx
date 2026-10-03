@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import './App.css';
 import CaseStudy from './pages/CaseStudy';
+import TechText from './components/TechText/TechText';
 
 const GITHUB_USERNAME = 'JishnuPG-tech';
 const GITHUB_API = 'https://api.github.com';
@@ -419,6 +420,24 @@ function App() {
               <p className="hero-description" data-reveal>
                 I’m <strong>Jishnu P G</strong>, an AI-focused developer building practical products across machine learning, web systems, developer tooling, infrastructure, and Android.
               </p>
+              <div className="hero-tech-signature" data-reveal>
+                <TechText
+                  text="JISHNU P G"
+                  fontWeight={600}
+                  fontSize={150}
+                  reveal="letter"
+                  dashLength={4}
+                  dashGap={2}
+                  specks={15}
+                  color="#F5F2EA"
+                  accentColor="#E9825F"
+                  selection={true}
+                  labels={false}
+                  draggable={false}
+                  sweep={true}
+                  speed={0.8}
+                />
+              </div>
               <div className="hero-actions" data-reveal>
                 <a className="primary-btn" href="#work">Explore selected work <ArrowRight size={16} /></a>
                 <a className="secondary-btn" href="/assets/resume.html" target="_blank" rel="noreferrer"><Download size={15} /> Resume</a>
