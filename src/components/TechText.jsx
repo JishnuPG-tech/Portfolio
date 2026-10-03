@@ -244,6 +244,7 @@ const TechText = ({
           outline: 0,
           index: i,
           fill: sprite(s, next, base, false),
+          accent: sprite({ ...s, color: s.accentColor }, next, base, false),
           dashes: sprite(s, next, base, true)
         });
       });
@@ -556,7 +557,7 @@ const TechText = ({
         }
         if (glyph.outline > 0.001) {
           ctx.globalAlpha = glyph.outline;
-          blit(ctx, glyph.dashes, glyph.offset.x, glyph.offset.y, 0, 0);
+          blit(ctx, glyph.accent, glyph.offset.x, glyph.offset.y, 0, 0);
         }
         ctx.globalAlpha = 1;
       }
