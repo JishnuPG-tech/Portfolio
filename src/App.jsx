@@ -27,30 +27,30 @@ const projects = [
   },
   {
     number: '02',
+    name: 'Hermex',
+    eyebrow: 'AI Agent Platform',
+    description: 'A personal AI platform with an autonomous agent layer, memory, tools, WebUI, voice capabilities, and durable task workflows.',
+    tags: ['Python', 'React', 'Docker'],
+    repo: 'https://github.com/JishnuPG-tech/Hermes',
+    accent: 'hermes'
+  },
+  {
+    number: '03',
     name: 'Omniroute',
     eyebrow: 'AI Infrastructure',
-    description: 'A routing layer for AI coding clients, agents, and model endpoints.',
-    tags: ['Node.js', 'APIs', 'WebSockets'],
+    description: 'A production routing layer for AI coding clients, agents, model endpoints, and hosted OpenCode services.',
+    tags: ['FastAPI', 'Docker', 'WebSockets'],
     repo: 'https://github.com/JishnuPG-tech/Omniroute',
     accent: 'network'
   },
   {
-    number: '03',
-    name: 'OpenCode Stack',
-    eyebrow: 'Developer Tools',
-    description: 'A hosted coding-agent environment combining OpenCode, terminal access, storage, and a mobile client.',
-    tags: ['React Native', 'Linux', 'Hugging Face'],
-    repo: 'https://github.com/JishnuPG-tech',
-    accent: 'terminal'
-  },
-  {
     number: '04',
-    name: 'InstaFlow',
-    eyebrow: 'Android',
-    description: 'A native media workflow built with Kotlin, Compose, metadata-first processing, and FFmpeg.',
-    tags: ['Kotlin', 'Compose', 'FFmpeg'],
-    repo: 'https://github.com/JishnuPG-tech',
-    accent: 'mobile'
+    name: 'Wedora-H',
+    eyebrow: 'Web Product',
+    description: 'A premium mobile-first e-wedding platform with elegant invitations, animations, RSVP flows, and an admin dashboard.',
+    tags: ['React', 'Vite', 'Tailwind'],
+    repo: 'https://github.com/JishnuPG-tech/Wedora-H',
+    accent: 'wedora'
   }
 ];
 
@@ -190,6 +190,18 @@ function ProfileAvatar({ src, className = '' }) {
 }
 
 function ProjectArtwork({ accent }) {
+  if (accent === 'hermes') {
+    return (
+      <div className="project-art art-hermes">
+        <div className="hermes-rings"><span /><span /><span /></div>
+        <div className="hermes-core"><BrainCircuit size={28} /><strong>HERMEX</strong><small>MEMORY · TOOLS · AGENT</small></div>
+        <span className="hermes-chip hermes-a">VOICE</span>
+        <span className="hermes-chip hermes-b">TASKS</span>
+        <span className="hermes-chip hermes-c">MEMORY</span>
+      </div>
+    );
+  }
+
   if (accent === 'network') {
     return (
       <div className="project-art art-network">
@@ -219,6 +231,20 @@ function ProjectArtwork({ accent }) {
           </div>
         </div>
         <span className="terminal-badge">AGENT · PTY · SYNC</span>
+      </div>
+    );
+  }
+
+  if (accent === 'wedora') {
+    return (
+      <div className="project-art art-wedora">
+        <div className="wedora-frame">
+          <div className="wedora-top"><span>W</span><small>WEDDING INVITATION</small></div>
+          <div className="wedora-flower" />
+          <div className="wedora-lines"><span /><span /><span /></div>
+          <div className="wedora-actions"><i /><i /></div>
+        </div>
+        <span className="wedora-chip">RSVP · GALLERY · VENUE</span>
       </div>
     );
   }
@@ -270,7 +296,7 @@ function App() {
   const [active, setActive] = useState('home');
   const [copied, setCopied] = useState(false);
   const [github, setGithub] = useState(emptyGithub);
-  const [projectOrder] = useState(() => shuffleItems(projects.slice(1)));
+
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
@@ -453,7 +479,7 @@ function App() {
             </article>
 
             <div className="project-grid">
-              {projectOrder.map(project => (
+              {projects.slice(1).map(project => (
                 <article className={'project-card ' + project.accent} key={project.name} data-reveal>
                   <div className="card-visual">
                     <span>{project.number} / {project.eyebrow}</span>
