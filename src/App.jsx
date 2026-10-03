@@ -564,20 +564,20 @@ function App() {
                     fontSize={30}
                     letterSpacing={0}
                     reveal="letter"
-                    reach={62}
-                    softness={0.96}
+                    reach={72}
+                    softness={0.97}
                     dashLength={1}
                     dashGap={1}
                     strokeWidth={0.75}
                     lineStyle="solid"
                     specks={0}
-                    color="#F3F0E9"
-                    accentColor="#C89382"
+                    color="#FFFFFF"
+                    accentColor="#E18462"
                     selection={false}
                     labels={false}
                     draggable={false}
                     sweep={true}
-                    speed={0.12}
+                    speed={0.22}
                   />
                 </h3><p>{github.profile?.bio || 'AI-focused developer building software, infrastructure and Android experiences.'}</p><div className="profile-meta">{github.profile?.location && <span><MapPin size={13} /> {github.profile.location}</span>} {github.profile?.created_at && <span><CalendarDays size={13} /> Joined {new Date(github.profile.created_at).getFullYear()}</span>}</div></div>
               </div>
