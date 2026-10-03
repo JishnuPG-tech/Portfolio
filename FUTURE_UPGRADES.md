@@ -1,198 +1,36 @@
-# Portfolio Future Upgrades Roadmap
+# Portfolio Upgrade Notes
 
-## Optional Enhancements (Priority Order)
+The portfolio has been redesigned around a responsive, product-first engineering presentation.
 
-### 1. ✨ SmartWatt Case Study Page
-**Why:** Deep dive into your flagship project shows technical depth to recruiters
+## Completed
 
-**What to add:**
-- Dedicated `/smartwatt` route
-- Problem statement with graphs
-- Architecture diagram
-- ML model performance metrics
-- Before/after energy usage comparisons
-- User testimonials (if available)
-- Video demo embed
+- Responsive desktop, tablet, and mobile layout
+- Mobile navigation with accessible menu state
+- Active section navigation using IntersectionObserver
+- Premium editorial typography and restrained card system
+- Flagship SmartWatt case-study presentation
+- Project visual system for secondary projects
+- Consolidated About and engineering philosophy content
+- Capability-based technical stack
+- Lightweight GitHub telemetry that does not block the critical render path
+- Mobile sticky Resume and Contact actions
+- Resume link consolidated to /assets/resume.html
+- Responsive SmartWatt simulator
+- Fixed simulator CSS class mismatches
+- Reduced-motion support
+- Focus states and touch-friendly controls
+- Removed unused legacy static portfolio files
 
-**Tech stack:** React Router v6, Recharts, React Markdown
+## Design principles
 
-**Estimated time:** 4-6 hours
+1. Show systems, not only descriptions.
+2. Keep the first screen focused on identity, work, and proof.
+3. Treat mobile as a first-class layout rather than a collapsed desktop page.
+4. Keep external telemetry out of the critical rendering path.
+5. Use motion and visual detail only where they improve comprehension.
+6. Keep technical claims presented as reported project metrics rather than universal guarantees.
 
-**Files to create:**
-```
-src/pages/CaseStudy.jsx
-src/pages/CaseStudy.css
-src/components/CaseStudy/
-  ├── ProblemStatement.jsx
-  ├── Architecture.jsx
-  ├── Metrics.jsx
-  └── Results.jsx
-```
+## Main routes
 
----
-
-### 2. 📊 GitHub Activity Preview
-**Why:** Shows consistent learning & contribution activity
-
-**What to add:**
-- GitHub contribution graph (last 12 months)
-- Recent commits/PRs
-- Repository showcase with stars/forks
-- Contribution streak
-
-**Tech stack:** GitHub API, Axios, react-github-calendar
-
-**Estimated time:** 2-3 hours
-
-**Implementation:**
-```jsx
-// Use GitHub REST API
-GET https://api.github.com/users/jishnupg/repos
-GET https://api.github.com/users/jishnupg/events/public
-```
-
-**Files to create:**
-```
-src/components/GitHubActivity.jsx
-src/components/GitHubActivity.css
-src/hooks/useGitHubData.js
-```
-
-**Libraries to install:**
-```bash
-npm install axios react-github-calendar
-```
-
----
-
-### 3. 📄 Resume Download Button
-**Why:** Easy 1-click resume access for recruiters
-
-**What to add:**
-- Download button in Navbar (optional) or Contact section
-- PDF generation from resume data
-- Multiple format options (PDF, DOCX)
-- Tracking (optional) - analytics on downloads
-
-**Tech stack:** jsPDF, html2pdf, or React-to-PDF
-
-**Estimated time:** 1-2 hours
-
-**Implementation:**
-```jsx
-// Option A: Pre-built PDF (simplest)
-import resume from './assets/Jishnu_PG_Resume.pdf';
-<a href={resume} download="Jishnu_PG_Resume.pdf" className="btn">
-  Download Resume
-</a>
-
-// Option B: Generate on-the-fly
-import html2pdf from 'html2pdf.js';
-const handleDownload = () => {
-  html2pdf().set(opt).from(element).save();
-};
-```
-
-**Files to create:**
-```
-public/assets/Jishnu_PG_Resume.pdf
-src/hooks/useResumeDownload.js
-src/components/ResumeDownloadButton.jsx
-```
-
-**Libraries to install:**
-```bash
-npm install html2pdf.js
-# OR
-npm install jspdf
-```
-
----
-
-## Implementation Priority Matrix
-
-| Feature | Difficulty | Impact | Effort | Priority |
-|---------|-----------|--------|--------|----------|
-| SmartWatt Case Study | High | Very High | 4-6h | 🔴 First |
-| GitHub Activity | Medium | High | 2-3h | 🟡 Second |
-| Resume Download | Low | Medium | 1-2h | 🟢 Third |
-
----
-
-## Quick Start for Each
-
-### SmartWatt Case Study
-```bash
-# Add React Router
-npm install react-router-dom
-
-# Add charts library
-npm install recharts
-```
-
-Then create a route in App.jsx:
-```jsx
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import CaseStudy from './pages/CaseStudy';
-
-<Routes>
-  <Route path="/" element={<HomePage />} />
-  <Route path="/smartwatt" element={<CaseStudy />} />
-</Routes>
-```
-
-### GitHub Activity
-```bash
-npm install axios react-github-calendar
-```
-
-Call in a new component:
-```jsx
-const [repos, setRepos] = useState([]);
-
-useEffect(() => {
-  fetch('https://api.github.com/users/jishnupg/repos?sort=updated')
-    .then(r => r.json())
-    .then(setRepos);
-}, []);
-```
-
-### Resume Download
-```bash
-# Already installed: jspdf (check package.json)
-# Just add button:
-<a href={resumeURL} download className="btn btn-primary">
-  📥 Download Resume
-</a>
-```
-
----
-
-## Current Portfolio Score
-
-| Aspect | Score | Status |
-|--------|-------|--------|
-| Core Portfolio | 10/10 | ✅ Complete |
-| UI/UX Polish | 10/10 | ✅ Complete |
-| Responsiveness | 10/10 | ✅ Complete |
-| Content Quality | 10/10 | ✅ Elite |
-| **Deployable** | **10/10** | **✅ Ready NOW** |
-| Case Study Depth | 7/10 | 📋 Optional |
-| GitHub Integration | 6/10 | 📋 Optional |
-| Resume Access | 8/10 | 📋 Optional |
-
----
-
-## Deployment Status
-
-✅ **READY TO DEPLOY TODAY**
-
-All core features complete. These upgrades are nice-to-have enhancements for future iterations.
-
-**Recommended deploy platforms:**
-- Vercel (recommended for Next.js/React)
-- Netlify
-- GitHub Pages
-
-Deployment guide: See `DEPLOYMENT.md`
-
+- / for the portfolio
+- /smartwatt for the SmartWatt case study
