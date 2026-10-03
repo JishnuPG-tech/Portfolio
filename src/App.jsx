@@ -386,7 +386,27 @@ function App() {
         <div className="header-inner">
           <a className="brand" href="#home" onClick={() => setMenuOpen(false)}>
             <ProfileAvatar src={github.profile?.avatar_url} className="brand-mark" />
-            <span className="brand-copy"><strong>Jishnu P G</strong><small>AI · Full Stack · Android</small></span>
+            <span className="brand-copy">
+              <span className="brand-tech-text" aria-label="Jishnu P G">
+                <TechText
+                  text="JISHNU P G"
+                  fontWeight={600}
+                  fontSize={34}
+                  reveal="letter"
+                  dashLength={3}
+                  dashGap={2}
+                  specks={5}
+                  color="#F5F2EA"
+                  accentColor="#E9825F"
+                  selection={false}
+                  labels={false}
+                  draggable={false}
+                  sweep={true}
+                  speed={0.55}
+                />
+              </span>
+              <small>AI · Full Stack · Android</small>
+            </span>
           </a>
 
           <nav className={menuOpen ? 'site-nav is-open' : 'site-nav'}>
@@ -421,24 +441,6 @@ function App() {
               <p className="hero-description" data-reveal>
                 I’m <strong>Jishnu P G</strong>, an AI-focused developer building practical products across machine learning, web systems, developer tooling, infrastructure, and Android.
               </p>
-              <div className="hero-tech-signature" data-reveal>
-                <TechText
-                  text="JISHNU P G"
-                  fontWeight={600}
-                  fontSize={150}
-                  reveal="letter"
-                  dashLength={4}
-                  dashGap={2}
-                  specks={15}
-                  color="#F5F2EA"
-                  accentColor="#E9825F"
-                  selection={true}
-                  labels={false}
-                  draggable={false}
-                  sweep={true}
-                  speed={0.8}
-                />
-              </div>
               <div className="hero-actions" data-reveal>
                 <a className="primary-btn" href="#work">Explore selected work <ArrowRight size={16} /></a>
                 <a className="secondary-btn" href="/assets/resume.html" target="_blank" rel="noreferrer"><Download size={15} /> Resume</a>
