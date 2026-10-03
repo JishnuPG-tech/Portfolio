@@ -192,32 +192,8 @@ function ProfileAvatar({ src, className = '' }) {
 }
 
 function ProjectArtwork({ accent }) {
-  if (accent === 'hermes') {
-    return (
-      <div className="project-art art-hermes">
-        <div className="hermes-rings"><span /><span /><span /></div>
-        <div className="hermes-core"><BrainCircuit size={28} /><strong>HERMEX</strong><small>MEMORY · TOOLS · AGENT</small></div>
-        <span className="hermes-chip hermes-a">VOICE</span>
-        <span className="hermes-chip hermes-b">TASKS</span>
-        <span className="hermes-chip hermes-c">MEMORY</span>
-      </div>
-    );
-  }
-
-  if (accent === 'network') {
-    return (
-      <div className="project-art art-network">
-        <div className="network-grid" />
-        <div className="route route-a" />
-        <div className="route route-b" />
-        <div className="route route-c" />
-        <span className="network-node n1" />
-        <span className="network-node n2" />
-        <span className="network-node n3" />
-        <span className="network-node n4" />
-        <div className="route-labels"><span>CLIENT</span><span>ROUTER</span><span>MODEL</span></div>
-      </div>
-    );
+  if (accent === 'hermes' || accent === 'network' || accent === 'wedora') {
+    return <div className="project-art project-art-empty" aria-hidden="true" />;
   }
 
   if (accent === 'terminal') {
@@ -233,20 +209,6 @@ function ProjectArtwork({ accent }) {
           </div>
         </div>
         <span className="terminal-badge">AGENT · PTY · SYNC</span>
-      </div>
-    );
-  }
-
-  if (accent === 'wedora') {
-    return (
-      <div className="project-art art-wedora">
-        <div className="wedora-frame">
-          <div className="wedora-top"><span>W</span><small>WEDDING INVITATION</small></div>
-          <div className="wedora-flower" />
-          <div className="wedora-lines"><span /><span /><span /></div>
-          <div className="wedora-actions"><i /><i /></div>
-        </div>
-        <span className="wedora-chip">RSVP · GALLERY · VENUE</span>
       </div>
     );
   }
@@ -270,7 +232,6 @@ function ProjectArtwork({ accent }) {
 
   return null;
 }
-
 function RepoThumbnail({ compact = false }) {
   return <div className={`repo-thumb-empty ${compact ? 'is-compact' : ''}`} aria-hidden="true" />;
 }
