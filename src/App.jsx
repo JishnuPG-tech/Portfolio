@@ -271,7 +271,12 @@ function ProjectArtwork({ accent }) {
 
 function RepoThumbnail({ repo, index, compact = false }) {
   const language = (repo.language || 'code').toLowerCase();
-  const kind = language.includes('python') ? 'python'
+  const repoName = repo.name.toLowerCase();
+  const kind = repoName.includes('smartwatt') ? 'smartwatt'
+    : repoName.includes('hermes') || repoName.includes('hermex') ? 'hermes'
+    : repoName.includes('omniroute') ? 'network'
+    : repoName.includes('wedora') ? 'wedora'
+    : language.includes('python') ? 'python'
     : language.includes('javascript') || language.includes('typescript') ? 'js'
     : language.includes('kotlin') || language.includes('java') ? 'mobile'
     : language.includes('html') || language.includes('css') ? 'web'
