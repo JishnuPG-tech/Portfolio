@@ -8,8 +8,8 @@ import {
 } from 'lucide-react';
 import './App.css';
 import TechText from './components/TechText';
+import FlipCard from './components/FlipCard';
 import CaseStudy from './pages/CaseStudy';
-import TechText from './components/TechText/TechText';
 
 const GITHUB_USERNAME = 'JishnuPG-tech';
 const GITHUB_API = 'https://api.github.com';
@@ -506,11 +506,55 @@ function App() {
             <div className="project-grid">
               {projects.slice(1).map(project => (
                 <article className={'project-card ' + project.accent} key={project.name} data-reveal>
-                  <div className="card-visual">
-                    <span>{project.number} / {project.eyebrow}</span>
-                    <ProjectArtwork accent={project.accent} />
-                  </div>
-                  <div className="project-card-body"><span className="card-eyebrow">{project.eyebrow}</span><h3>{project.name}</h3><p>{project.description}</p><div className="tag-list">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div><a className="inline-link" href={project.repo} target="_blank" rel="noreferrer">View on GitHub <ArrowUpRight size={14} /></a></div>
+                  <FlipCard
+                    className="project-flip"
+                    axis="y"
+                    flipOnClick
+                    draggable
+                    dragDistance={0}
+                    tilt
+                    tiltMax={9}
+                    glare
+                    glareOpacity={0.18}
+                    hoverScale={1.02}
+                    perspective={1100}
+                    stiffness={170}
+                    damping={20}
+                    width={300}
+                    height={350}
+                    radius={20}
+                    background="#101310"
+                    color="#F5F2EA"
+                    shadow
+                    shadowColor="#000000"
+                    shadowOpacity={0.38}
+                    ariaLabel={`${project.name} project card. Tap or drag to flip.`}
+                    front={
+                      <div className="flip-project-face flip-project-front">
+                        <span className="flip-project-index">{project.number} / {project.eyebrow}</span>
+                        <ProjectArtwork accent={project.accent} />
+                        <div className="flip-project-overlay">
+                          <strong>{project.name}</strong>
+                          <span>Tap or drag to explore</span>
+                        </div>
+                      </div>
+                    }
+                    back={
+                      <div className="flip-project-face flip-project-back">
+                        <span className="flip-project-index">{project.number} / {project.eyebrow}</span>
+                        <div className="flip-project-back-copy">
+                          <span className="card-eyebrow">{project.eyebrow}</span>
+                          <h3>{project.name}</h3>
+                          <p>{project.description}</p>
+                          <div className="tag-list">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
+                          <span className="flip-project-action">View repository <ArrowUpRight size={14} /></span>
+                        </div>
+                      </div>
+                    }
+                  />
+                  <a className="project-card-link" href={project.repo} target="_blank" rel="noreferrer">
+                    View on GitHub <ArrowUpRight size={14} />
+                  </a>
                 </article>
               ))}
             </div>
