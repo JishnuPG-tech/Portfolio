@@ -77,9 +77,17 @@ const emptyGithub = {
   error: false
 };
 
+function getStoredTheme() {
+  try {
+    return window.localStorage.getItem('portfolio-theme') || 'dark';
+  } catch {
+    return 'dark';
+  }
+}
+
 function readCache(key, maxAge) {
   try {
-    const item = JSON.parse(localStorage.getItem(key));
+    const item = JSON.parse(window.localStorage.getItem(key));
     if (item && Date.now() - item.time < maxAge) return item.data;
   } catch {}
   return null;
@@ -87,7 +95,7 @@ function readCache(key, maxAge) {
 
 function writeCache(key, data) {
   try {
-    localStorage.setItem(key, JSON.stringify({ time: Date.now(), data }));
+    window.localStorage.setItem(key, JSON.stringify({ time: Date.now(), data }));
   } catch {}
 }
 
@@ -142,7 +150,7 @@ function buildContributionWeeks(contributions) {
 }
 
 function App() {
-  const [theme, setTheme] = useState(() => localStorage.getItem('portfolio-theme') || 'dark');
+  const [theme, setTheme] = useState(getStoredTheme);
   const [menuOpen, setMenuOpen] = useState(false);
   const [active, setActive] = useState('home');
   const [copied, setCopied] = useState(false);
@@ -150,7 +158,7 @@ function App() {
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
-    localStorage.setItem('portfolio-theme', theme);
+    try { window.localStorage.setItem('portfolio-theme', theme); } catch {}
   }, [theme]);
 
   useEffect(() => {
@@ -162,6 +170,7 @@ function App() {
   }, []);
 
   useEffect(() => {
+    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) return undefined;
     const sections = ['home', 'work', 'github', 'about', 'stack', 'contact'];
     const observer = new IntersectionObserver(
       entries => entries.forEach(entry => entry.isIntersecting && setActive(entry.target.id)),
@@ -175,6 +184,10 @@ function App() {
   }, []);
 
   useEffect(() => {
+    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
+      document.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('is-visible'));
+      return undefined;
+    }
     const reveal = new IntersectionObserver(
       entries => entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('is-visible')),
       { threshold: 0.08 }
@@ -209,6 +222,7 @@ function App() {
 
   const copyEmail = async () => {
     try {
+      if (!navigator.clipboard) throw new Error('Clipboard unavailable');
       await navigator.clipboard.writeText('jishnupg2005@gmail.com');
       setCopied(true);
       setTimeout(() => setCopied(false), 1600);
