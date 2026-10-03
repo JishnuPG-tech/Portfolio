@@ -191,3 +191,71 @@ button,input,textarea,select{font:inherit}button,a{-webkit-tap-highlight-color:t
   .terminal-window{width:83%}
   .media-phone{width:94px;height:154px}
 }
+
+/* Final avatar and project-art pass */
+.avatar-crop,.avatar-fallback{background:var(--surface)!important;border:0!important;box-shadow:none!important}
+.avatar-crop img{transform:scale(1.48);transform-origin:center;object-position:center center;border:0!important;box-shadow:none!important}
+.brand-mark.avatar-crop{border-radius:11px!important}
+.console-avatar.avatar-crop{border-radius:18px!important}
+.github-avatar.avatar-crop{border-radius:19px!important}
+.eyebrow-row{gap:11px;letter-spacing:.025em}
+.eyebrow-row .status-dot{margin-left:1px}
+.project-visual{isolation:isolate}
+.energy-tags{position:absolute;inset:0!important}
+.energy-tags .visual-tag{
+  position:absolute;
+  min-width:76px;
+  min-height:34px;
+  display:flex!important;
+  align-items:center;
+  justify-content:center;
+  padding:7px 11px;
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:10px;
+  background:rgba(15,18,16,.84);
+  color:#8e938b;
+  font:8px var(--mono);
+  letter-spacing:.08em;
+  backdrop-filter:blur(7px);
+  -webkit-backdrop-filter:blur(7px);
+}
+.energy-tags .visual-tag:nth-child(1){left:10%;bottom:12%}
+.energy-tags .neural-tag{right:10%;top:13%}
+.energy-tags .visual-tag:nth-child(3){right:12%;bottom:12%}
+.art-hermes{background:radial-gradient(circle at center,rgba(225,132,98,.12),transparent 60%)}
+.hermes-rings{position:absolute;width:210px;height:210px;border-radius:50%;border:1px solid rgba(225,132,98,.18);animation:spin 26s linear infinite}
+.hermes-rings:before,.hermes-rings:after{content:"";position:absolute;border-radius:50%;border:1px solid rgba(139,173,145,.12)}
+.hermes-rings:before{inset:20%}.hermes-rings:after{inset:38%}
+.hermes-rings span{position:absolute;width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 18px rgba(225,132,98,.5)}
+.hermes-rings span:nth-child(1){left:49%;top:-3px}.hermes-rings span:nth-child(2){right:-3px;top:47%}.hermes-rings span:nth-child(3){left:16%;bottom:10%}
+.hermes-core{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;width:122px;height:122px;border:1px solid rgba(225,132,98,.28);border-radius:28px;background:rgba(13,16,14,.84);box-shadow:0 20px 55px rgba(0,0,0,.28)}
+.hermes-core svg{color:var(--accent);margin-bottom:8px}
+.hermes-core strong{font:500 12px var(--mono);letter-spacing:.14em;color:#f0ece4}.hermes-core small{margin-top:5px;color:#70766e;font:7px var(--mono);letter-spacing:.08em}
+.hermes-chip,.wedora-chip{position:absolute;padding:7px 9px;border:1px solid #30362f;border-radius:8px;background:rgba(12,14,13,.82);color:#81867f;font:7px var(--mono);letter-spacing:.08em}
+.hermes-a{left:12%;top:26%}.hermes-b{right:12%;top:26%}.hermes-c{left:18%;bottom:18%}
+.art-wedora{background:radial-gradient(circle at 50% 38%,rgba(225,132,98,.1),transparent 62%)}
+.wedora-frame{position:relative;width:76%;max-width:300px;height:168px;border:1px solid rgba(225,132,98,.28);border-radius:17px;background:linear-gradient(145deg,#171915,#0f1110);padding:18px;box-shadow:0 20px 55px rgba(0,0,0,.3);overflow:hidden}
+.wedora-frame:before,.wedora-frame:after{content:"";position:absolute;border-radius:50%;border:1px solid rgba(225,132,98,.13)}
+.wedora-frame:before{width:150px;height:150px;right:-55px;top:-65px}.wedora-frame:after{width:120px;height:120px;left:-55px;bottom:-70px}
+.wedora-top{display:flex;align-items:center;gap:10px;position:relative;z-index:2}.wedora-top span{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;background:var(--text);color:var(--bg);font:500 10px var(--serif)}.wedora-top small{color:#777d75;font:7px var(--mono);letter-spacing:.08em}
+.wedora-flower{position:absolute;width:66px;height:66px;right:23%;top:34%;border-radius:50%;border:1px solid rgba(225,132,98,.3);box-shadow:0 0 0 9px rgba(225,132,98,.03),0 0 0 18px rgba(225,132,98,.02)}
+.wedora-flower:before,.wedora-flower:after{content:"";position:absolute;left:50%;top:50%;width:52px;height:1px;background:rgba(225,132,98,.25);transform:translate(-50%,-50%) rotate(45deg)}.wedora-flower:after{transform:translate(-50%,-50%) rotate(-45deg)}
+.wedora-lines{position:absolute;left:18px;bottom:20px;width:110px}.wedora-lines span{display:block;height:4px;border-radius:99px;background:#2b302b;margin-top:7px}.wedora-lines span:first-child{width:100%;background:rgba(225,132,98,.35)}.wedora-lines span:nth-child(2){width:76%}.wedora-lines span:nth-child(3){width:58%}
+.wedora-actions{position:absolute;right:18px;bottom:20px;display:flex;gap:6px}.wedora-actions i{width:26px;height:26px;border:1px solid #353a35;border-radius:8px;background:#151814}.wedora-chip{bottom:17%;right:12%}
+.custom-repo-thumb.kind-smartwatt .repo-thumb-art:before{width:62px;height:62px;left:24%;top:6%;border-radius:50%;border-color:rgba(139,173,145,.28);box-shadow:0 0 0 10px rgba(225,132,98,.04),0 0 0 20px rgba(225,132,98,.03)}
+.custom-repo-thumb.kind-smartwatt .repo-thumb-art:after{width:30px;height:30px;left:40%;top:27%;border-radius:9px;background:rgba(225,132,98,.08);transform:rotate(18deg)}
+.custom-repo-thumb.kind-hermes .repo-thumb-art:before{inset:11%;border-radius:50%;border-color:rgba(225,132,98,.2);box-shadow:inset 0 0 0 13px rgba(225,132,98,.025)}
+.custom-repo-thumb.kind-hermes .repo-thumb-art:after{width:25px;height:25px;left:39%;top:33%;border-radius:8px;background:rgba(139,173,145,.08)}
+.custom-repo-thumb.kind-network .repo-thumb-art:before{left:14%;right:14%;top:22%;bottom:22%;border-radius:7px;transform:rotate(-4deg)}.custom-repo-thumb.kind-network .repo-thumb-art:after{width:7px;height:7px;left:24%;top:40%;border:0;border-radius:50%;background:var(--accent);box-shadow:34px -14px 0 var(--accent),67px 5px 0 var(--accent),28px 27px 0 var(--accent)}
+.custom-repo-thumb.kind-wedora .repo-thumb-art:before{left:25%;top:10%;width:48px;height:48px;border-radius:50%;border-color:rgba(225,132,98,.25);box-shadow:0 0 0 9px rgba(225,132,98,.03)}
+.custom-repo-thumb.kind-wedora .repo-thumb-art:after{left:41%;top:26%;width:14px;height:14px;border-radius:50%;border:0;background:rgba(225,132,98,.28);box-shadow:0 22px 0 3px rgba(225,132,98,.1)}
+@media(max-width:760px){
+  .avatar-crop img{transform:scale(1.58)}
+  .energy-tags .visual-tag{min-width:72px;min-height:32px}
+  .energy-tags .visual-tag:nth-child(1){left:7%;bottom:8%}
+  .energy-tags .neural-tag{right:7%;top:11%}
+  .energy-tags .visual-tag:nth-child(3){right:8%;bottom:8%}
+  .hermes-rings{width:190px;height:190px}
+  .hermes-core{width:112px;height:112px}
+  .wedora-frame{width:82%;height:160px}
+}
