@@ -15,7 +15,8 @@
     "react-router-dom": "^6.8.0",
     "react-scripts": "5.0.1",
     "react-scroll": "^1.8.10",
-    "recharts": "^2.10.3"
+    "recharts": "^2.10.3",
+    "motion": "^12.23.12"
   },
   "scripts": {
     "start": "react-scripts start",
