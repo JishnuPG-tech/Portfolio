@@ -562,17 +562,22 @@ function App() {
                     fontFamily="Playfair Display, Georgia, serif"
                     fontWeight={500}
                     fontSize={30}
-                    reveal="letter"
-                    dashLength={3}
-                    dashGap={2}
-                    specks={3}
+                    letterSpacing={0}
+                    reveal="area"
+                    reach={92}
+                    softness={0.9}
+                    dashLength={2}
+                    dashGap={5}
+                    strokeWidth={1}
+                    lineStyle="solid"
+                    specks={0}
                     color="#F3F0E9"
-                    accentColor="#E18462"
+                    accentColor="#D9896B"
                     selection={false}
                     labels={false}
                     draggable={false}
                     sweep={true}
-                    speed={0.45}
+                    speed={0.28}
                   />
                 </h3><p>{github.profile?.bio || 'AI-focused developer building software, infrastructure and Android experiences.'}</p><div className="profile-meta">{github.profile?.location && <span><MapPin size={13} /> {github.profile.location}</span>} {github.profile?.created_at && <span><CalendarDays size={13} /> Joined {new Date(github.profile.created_at).getFullYear()}</span>}</div></div>
               </div>
