@@ -100,7 +100,7 @@ function writeCache(key, data) {
 }
 
 async function fetchGithubData() {
-  const cached = readCache('jishnu-github-data-v2', 15 * 60 * 1000);
+  const cached = readCache('jishnu-github-data-v3', 15 * 60 * 1000);
   if (cached) {
     return {
       ...cached,
@@ -132,7 +132,7 @@ async function fetchGithubData() {
     contributions: Array.isArray(contributionsPayload) ? contributionsPayload : (contributionsPayload?.contributions || []),
     total: contributionsPayload?.total || {}
   };
-  writeCache('jishnu-github-data-v2', data);
+  writeCache('jishnu-github-data-v3', data);
   return data;
 }
 
