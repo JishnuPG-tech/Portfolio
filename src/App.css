@@ -259,3 +259,70 @@ button,input,textarea,select{font:inherit}button,a{-webkit-tap-highlight-color:t
   .hermes-core{width:112px;height:112px}
   .wedora-frame{width:82%;height:160px}
 }
+
+/* Final circular avatar containment pass */
+
+.avatar-crop,
+.avatar-fallback {
+  width: 100%;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  overflow: hidden;
+  border-radius: 50% !important;
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  background: var(--surface) !important;
+  padding: 0 !important;
+}
+
+.avatar-crop img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  object-position: center;
+  transform: none !important;
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  border-radius: 50%;
+  background: var(--surface);
+}
+
+.brand-mark.avatar-crop {
+  width: 38px !important;
+  height: 38px !important;
+  border-radius: 50% !important;
+}
+
+.console-avatar.avatar-crop {
+  width: 66px !important;
+  height: 66px !important;
+  border-radius: 50% !important;
+}
+
+.github-avatar.avatar-crop {
+  width: 76px !important;
+  height: 76px !important;
+  border-radius: 50% !important;
+}
+
+@media (max-width: 760px) {
+  .brand-mark.avatar-crop {
+    width: 35px !important;
+    height: 35px !important;
+  }
+
+  .console-avatar.avatar-crop {
+    width: 58px !important;
+    height: 58px !important;
+  }
+
+  .github-avatar.avatar-crop {
+    width: 60px !important;
+    height: 60px !important;
+  }
+}
