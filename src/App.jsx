@@ -387,25 +387,7 @@ function App() {
           <a className="brand" href="#home" onClick={() => setMenuOpen(false)}>
             <ProfileAvatar src={github.profile?.avatar_url} className="brand-mark" />
             <span className="brand-copy">
-              <span className="brand-tech-text" aria-label="Jishnu P G">
-                <TechText
-                  text="Jishnu P G"
-                  fontFamily="DM Sans, system-ui, sans-serif"
-                  fontWeight={700}
-                  fontSize={13}
-                  reveal="letter"
-                  dashLength={2}
-                  dashGap={2}
-                  specks={2}
-                  color="#F3F0E9"
-                  accentColor="#E18462"
-                  selection={false}
-                  labels={false}
-                  draggable={false}
-                  sweep={true}
-                  speed={0.55}
-                />
-              </span>
+              <span className="brand-name">Jishnu P G</span>
               <small>AI · Full Stack · Android</small>
             </span>
           </a>
@@ -574,7 +556,25 @@ function App() {
             <div className="github-profile-card" data-reveal>
               <div className="github-profile-main">
                 <ProfileAvatar src={github.profile?.avatar_url} className="github-avatar" />
-                <div><span className="github-handle">@JishnuPG-tech</span><h3>{github.profile?.name || 'Jishnu P G'}</h3><p>{github.profile?.bio || 'AI-focused developer building software, infrastructure and Android experiences.'}</p><div className="profile-meta">{github.profile?.location && <span><MapPin size={13} /> {github.profile.location}</span>} {github.profile?.created_at && <span><CalendarDays size={13} /> Joined {new Date(github.profile.created_at).getFullYear()}</span>}</div></div>
+                <div><span className="github-handle">@JishnuPG-tech</span><h3 className="github-tech-name">
+                  <TechText
+                    text={github.profile?.name || 'Jishnu P G'}
+                    fontFamily="Playfair Display, Georgia, serif"
+                    fontWeight={500}
+                    fontSize={30}
+                    reveal="letter"
+                    dashLength={3}
+                    dashGap={2}
+                    specks={3}
+                    color="#F3F0E9"
+                    accentColor="#E18462"
+                    selection={false}
+                    labels={false}
+                    draggable={false}
+                    sweep={true}
+                    speed={0.45}
+                  />
+                </h3><p>{github.profile?.bio || 'AI-focused developer building software, infrastructure and Android experiences.'}</p><div className="profile-meta">{github.profile?.location && <span><MapPin size={13} /> {github.profile.location}</span>} {github.profile?.created_at && <span><CalendarDays size={13} /> Joined {new Date(github.profile.created_at).getFullYear()}</span>}</div></div>
               </div>
               <div className="profile-actions"><a href="https://github.com/JishnuPG-tech" target="_blank" rel="noreferrer"><Github size={15} /> Follow on GitHub</a><span><Users size={14} /> {github.profile?.followers ?? '—'} followers</span></div>
             </div>
