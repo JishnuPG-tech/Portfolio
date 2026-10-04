@@ -237,7 +237,11 @@ function ProjectArtwork({ accent }) {
   return null;
 }
 function RepoThumbnail({ compact = false }) {
-  return <div className={`repo-thumb-empty ${compact ? 'is-compact' : ''}`} aria-hidden="true" />;
+  return (
+    <div className={`repo-thumb-empty ${compact ? 'is-compact' : ''}`} aria-hidden="true">
+      <Github className="repo-github-mark" size={compact ? 42 : 34} strokeWidth={1.7} />
+    </div>
+  );
 }
 
 function App() {
