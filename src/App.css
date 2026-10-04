@@ -612,3 +612,24 @@ button,input,textarea,select{font:inherit}button,a{-webkit-tap-highlight-color:t
   border:0;
   box-shadow:inset 0 0 80px rgba(0,0,0,.16);
 }
+
+
+/* Minimal GitHub identity marks */
+.project-art-empty{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.project-github-mark,
+.repo-github-mark{
+  color:#F5F2EA;
+  opacity:.76;
+}
+.repo-thumb-empty{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.repo-thumb-empty.is-compact .repo-github-mark{
+  opacity:.68;
+}
