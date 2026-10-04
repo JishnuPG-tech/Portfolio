@@ -193,7 +193,11 @@ function ProfileAvatar({ src, className = '' }) {
 
 function ProjectArtwork({ accent }) {
   if (accent === 'hermes' || accent === 'network' || accent === 'wedora') {
-    return <div className="project-art project-art-empty" aria-hidden="true" />;
+    return (
+      <div className="project-art project-art-empty" aria-hidden="true">
+        <Github className="project-github-mark" size={48} strokeWidth={1.7} />
+      </div>
+    );
   }
 
   if (accent === 'terminal') {
